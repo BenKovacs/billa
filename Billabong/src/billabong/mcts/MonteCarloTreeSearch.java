@@ -2,18 +2,18 @@ package billabong.mcts;
 
 import java.util.List;
 
-import com.baeldung.algorithms.mcts.tictactoe.Board;
-import com.baeldung.algorithms.mcts.tree.Node;
-import com.baeldung.algorithms.mcts.tree.Tree;
+import billabong.model.GameBoard;
 
 public class MonteCarloTreeSearch {
 
     private static final int WIN_SCORE = 10;
     private int level;
     private int oponent;
+    private int PN;
 
-    public MonteCarloTreeSearch() {
+    public MonteCarloTreeSearch(int PlayerNumber) {
         this.level = 3;
+        PN = PlayerNumber;
     }
 
     public int getLevel() {
@@ -28,11 +28,11 @@ public class MonteCarloTreeSearch {
         return 2 * (this.level - 1) + 1;
     }
 
-    public Board findNextMove(Board board, int playerNo) {
+    public GameBoard findNextMove(GameBoard board, int playerNo) {
         long start = System.currentTimeMillis();
         long end = start + 60 * getMillisForCurrentLevel();
 
-        oponent = 3 - playerNo;
+        oponent = getNextPlayer(playerNo);
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
         rootNode.getState().setBoard(board);
@@ -42,7 +42,7 @@ public class MonteCarloTreeSearch {
             // Phase 1 - Selection
             Node promisingNode = selectPromisingNode(rootNode);
             // Phase 2 - Expansion
-            if (promisingNode.getState().getBoard().checkStatus() == Board.IN_PROGRESS)
+            if (promisingNode.getState().getBoard().checkStatus() == GameBoard.IN_PROGRESS)
                 expandNode(promisingNode);
 
             // Phase 3 - Simulation
@@ -97,13 +97,20 @@ public class MonteCarloTreeSearch {
             tempNode.getParent().getState().setWinScore(Integer.MIN_VALUE);
             return boardStatus;
         }
-        while (boardStatus == Board.IN_PROGRESS) {
+        while (boardStatus == GameBoard.IN_PROGRESS) {
             tempState.togglePlayer();
             tempState.randomPlay();
             boardStatus = tempState.getBoard().checkStatus();
         }
 
         return boardStatus;
+    }
+    
+    public int getNextPlayer(int p) {
+   		if (p+1 <= PN) {
+    		return p+1;
+    	}
+    	return 1;
     }
 
 }
