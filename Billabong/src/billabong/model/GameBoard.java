@@ -178,9 +178,31 @@ public class GameBoard {
 		Kangaroo k = move.kangaroo;
 		int tx = move.to.x;
 		int ty = move.to.y;
-		
-		
-		
-		
 	}
+	
+	public boolean isOver() {
+    	int one = 0;
+    	int two = 0;
+    	
+    	
+    	for(int i = 0; i < 16; i++)
+    	{
+    		for(int j = 0; j < 14; j++)
+    		{
+    			if(bs[i][j].isOccupied())
+    			{
+    				if(bs[i][j].getOccupant().getTeam().getTeamId() == 1)
+    				{
+    					one++;
+    				}
+    				if(bs[i][j].getOccupant().getTeam().getTeamId() == 2)
+    				{
+    					two++;
+    				}
+    			}
+    		}
+    	}
+    	if(one < 1 || two < 1) return true;
+    	else return false;
+    }
 }
