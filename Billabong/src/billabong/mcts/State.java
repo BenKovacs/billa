@@ -3,35 +3,38 @@ package billabong.mcts;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.baeldung.algorithms.mcts.tictactoe.Board;
-import com.baeldung.algorithms.mcts.tictactoe.Position;
+import javax.swing.text.Position;
+
+import billabong.ai.model.LegalMove;
+import billabong.model.GameBoard;
+
 
 public class State {
-    private Board board;
+    private GameBoard board;
     private int playerNo;
     private int visitCount;
     private double winScore;
 
     public State() {
-        board = new Board();
+        board = new GameBoard(16,14);
     }
 
     public State(State state) {
-        this.board = new Board(state.getBoard());
+        this.board = new GameBoard(state.getBoard());
         this.playerNo = state.getPlayerNo();
         this.visitCount = state.getVisitCount();
         this.winScore = state.getWinScore();
     }
 
-    public State(Board board) {
-        this.board = new Board(board);
+    public State(GameBoard board) {
+        this.board = new GameBoard(board);
     }
 
-    Board getBoard() {
+    GameBoard getBoard() {
         return board;
     }
 
-    void setBoard(Board board) {
+    void setBoard(GameBoard board) {
         this.board = board;
     }
 
@@ -65,11 +68,11 @@ public class State {
 
     public List<State> getAllPossibleStates() {
         List<State> possibleStates = new ArrayList<>();
-        List<Position> availablePositions = this.board.getEmptyPositions();
-        availablePositions.forEach(p -> {
+        List<LegalMove> availablePositions = this.board.getEmptyPositions();
+        availablePositions.forEach(lm -> {
             State newState = new State(this.board);
             newState.setPlayerNo(3 - this.playerNo);
-            newState.getBoard().performMove(newState.getPlayerNo(), p);
+            newState.getBoard().doMove(lm);
             possibleStates.add(newState);
         });
         return possibleStates;
@@ -85,10 +88,10 @@ public class State {
     }
 
     void randomPlay() {
-        List<Position> availablePositions = this.board.getEmptyPositions();
+        List<LegalMove> availablePositions = this.board.getEmptyPositions();
         int totalPossibilities = availablePositions.size();
         int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
-        this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
+        this.board.doMove(availablePositions.get(selectRandom));
     }
 
     void togglePlayer() {

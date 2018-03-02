@@ -6,7 +6,7 @@ import billabong.model.BoardSquare;
 public class LegalChecker {
 	
 	
-	public Boolean checkLegal(BoardSquare[][] boardCopy, int ox, int oy, int dx, int dy)
+	public static Boolean checkLegal(BoardSquare[][] boardCopy, int ox, int oy, int dx, int dy)
 	{
 		//if(dx>13 || dy > 15) return false;
 		int deltaX = dx-ox;
@@ -45,7 +45,7 @@ public class LegalChecker {
 		else return false;
 	}
 	
-	public boolean onlyOne(BoardSquare[][] boardCopy, int ox, int oy, int dx, int dy)
+	public static boolean onlyOne(BoardSquare[][] boardCopy, int ox, int oy, int dx, int dy)
 	{	//System.out.println("Only One Tried");
 		//current x&y
 		

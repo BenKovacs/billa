@@ -10,6 +10,7 @@ public class MCTSmove {
 
 	private ArrayList<LegalMove> finalMovesList;
 	private BoardSquare[][] b;
+	public LegalMove move ;
 	
 	
 	public MCTSmove(BoardSquare[][] b, int team)

@@ -1,10 +1,16 @@
 package billabong.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.text.Position;
+
+
 import billabong.ai.Diffuser;
+import billabong.ai.LegalChecker;
 import billabong.ai.MiniMax;
+import billabong.ai.model.LegalMove;
 import billabong.model.player.Player;
 
 public class GameBoard {
@@ -17,10 +23,15 @@ public class GameBoard {
 															// the players on
 															// the gameboard
 	private List<Player> players = new ArrayList<>();
+	private int tx, ty, tnx, tny = -1;
 	
 	public BoardSquare[][] getboard(){
 		
 		return bs ;
+	}
+	
+	public GameBoard(GameBoard g){
+		clone(g) ;
 	}
 
 	public GameBoard(int width, int height) {
@@ -64,6 +75,35 @@ public class GameBoard {
 	public BoardSquare[][] getBs() {
 		return bs;
 	}
+	
+	public List<LegalMove> getEmptyPositions(){
+		
+		List<LegalMove> list = new LinkedList<LegalMove>() ;
+		Kangaroo current; 
+				
+		for(int i = 0 ; i < 16; i++){
+			for(int j = 0 ; j < 14; j++){
+				if(bs[i][j].isOccupied() && bs[i][j].getOccupant().getTeam().getTeamId() == 1 ){ /// need to get current plaer somehow to check 
+					current = bs[i][j].getOccupant() ;
+					for(int x = 0 ; x < 16; x++){
+						for(int y = 0; y < 14; y++){
+							if(tx!=-1 && ((tx == i && ty == j && tnx == x && tny == y)||(tnx == i && tny == j && tx == x && ty == y)) )
+							{
+								System.out.println( "Move is not added to movelist!" );
+							}
+							 
+							else if(LegalChecker.checkLegal(bs, i, j, x, y)){
+								LegalMove m = new LegalMove(i, j, x, y, current) ;
+								list.add(m) ;
+								//System.out.println("move " + y + " " + x + " added to list");
+							}
+						}
+					}
+				}
+			}
+		}
+		return list ;
+	}
 
 	/**
 	 * Adds the kangaroo to the the boardsquare as specified by the kangaroos x
@@ -85,6 +125,17 @@ public class GameBoard {
 		GameBoard clone = new GameBoard(getWidth(), getHeight());
 
 		for (Player p : this.players) {
+			Player cp = (Player) p.clone();
+			clone.addPlayer(cp);
+		}
+
+		return clone;
+	}
+	
+	public GameBoard clone(GameBoard bo) {
+		GameBoard clone = new GameBoard(bo.getWidth(), bo.getHeight());
+
+		for (Player p : bo.players) {
 			Player cp = (Player) p.clone();
 			clone.addPlayer(cp);
 		}
@@ -121,5 +172,15 @@ public class GameBoard {
 		this.bs[k.getX()][k.getY()].setOccupant(null);
 		this.kangaroos.remove(k);
 		k.getTeam().getKangaroos().remove(k);
+	}
+	
+	public void doMove(LegalMove move){
+		Kangaroo k = move.kangaroo;
+		int tx = move.to.x;
+		int ty = move.to.y;
+		
+		
+		
+		
 	}
 }
