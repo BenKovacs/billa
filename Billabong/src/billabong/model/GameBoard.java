@@ -17,6 +17,11 @@ public class GameBoard {
 															// the players on
 															// the gameboard
 	private List<Player> players = new ArrayList<>();
+	
+	public BoardSquare[][] getboard(){
+		
+		return bs ;
+	}
 
 	public GameBoard(int width, int height) {
 		super();

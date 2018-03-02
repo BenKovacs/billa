@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
+import billabong.ai.MCTS;
+import billabong.ai.MCTSmove;
 import billabong.ai.MiniMax;
 import billabong.ai.model.MiniMaxNode;
 import billabong.model.GameBoard;
@@ -278,6 +280,8 @@ public class MainApp implements ActionListener {
 	private void doMove() {
 		
 		MiniMaxNode bestMove = MiniMax.getInstance().getBestMove();
+		//MCTS mcts = new MCTS(gb.getboard(), currentPlayer) ;
+		//MCTSmove bestMove = mcts.selectAction(); 
 		
 		Kangaroo k = bestMove.move.kangaroo;
 		int tx = bestMove.move.to.x;

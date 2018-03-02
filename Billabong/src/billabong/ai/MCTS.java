@@ -24,24 +24,36 @@ public class MCTS {
 	    MCTS[] children;
 	    double nVisits, totValue;
 
-	    public void selectAction() {
+	    public LegalMove selectAction() {
 	        List<MCTS> visited = new LinkedList<MCTS>();
 	        MCTS current = this;
 	        visited.add(this);
 	        
-	        	while (!current.leaf()) {
-	        		current = current.select();
-	        		visited.add(current);
-	        	}
+        	while (!current.leaf()) {
+        		current = current.select();
+        		visited.add(current);
+        	}
 	        
 	        current.expand();
 	        MCTS newNode = current.select();
 	        visited.add(newNode);
 	        double value = rollOut(newNode);
-	        	for (MCTS node : visited) {
-	        		// would need extra logic for n-player game
-	        		node.updateStats(value);
+	        
+        	for (MCTS node : visited) {
+        		// would need extra logic for n-player game
+        		node.updateStats(value);
+        	}
+        	
+	        MCTS best = children[0] ;
+	        double bestV = children[0].totValue ;
+	        for(int i = 1 ; i < children.length ; i++){
+	        	if(bestV < children[i].totValue){
+	        		bestV = children[i].totValue ;
+	        		best = children[i] ;
 	        	}
+	        }
+	        
+	        LegalMove bestMove = best ;
 	    }
 
 	    public void expand() {
