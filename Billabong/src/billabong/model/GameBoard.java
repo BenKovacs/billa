@@ -17,11 +17,7 @@ public class GameBoard {
 	int width;
 	int height;
 	private BoardSquare[][] bs;
-	private List<Kangaroo> kangaroos = new ArrayList<>(); // just an ease of
-															// access to all the
-															// kangaroos for all
-															// the players on
-															// the gameboard
+	private List<Kangaroo> kangaroos = new ArrayList<>(); // just an ease of access to all the kangaroos for all the players on the gameboard
 	private List<Player> players = new ArrayList<>();
 	private int tx, ty, tnx, tny = -1;
 	
