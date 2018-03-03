@@ -18,8 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import billabong.ai.MCTS;
-import billabong.ai.MCTSmove;
 import billabong.ai.MiniMax;
 import billabong.ai.model.MiniMaxNode;
 import billabong.mcts.MonteCarloTreeSearch;
