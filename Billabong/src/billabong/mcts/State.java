@@ -20,22 +20,17 @@ public class State {
     }
 
     public State(State state) {
-    	if(state == null){
-    		System.out.println("fed state = null !!");
-    	}
-    	if(state.getBoard() == null){
-    		System.out.println("getBoard of fed state is null !!");
-    	}
         this.board = new GameBoard(state.getBoard());
         this.playerNo = state.getPlayerNo();
         this.visitCount = state.getVisitCount();
         this.winScore = state.getWinScore();
     }
 
-    public State(GameBoard board) {
+    public State(GameBoard b) {
     	System.out.println("new state with board is created");
-    	System.out.println("board copied from " + board.getHeight());
-        this.board = new GameBoard(board);
+    	System.out.println("board copied from " + b.getHeight());
+        this.board = new GameBoard(16,14);
+        this.board = board.clone(b);
         System.out.println("new board " + this.board.getHeight());
         
     }
@@ -77,12 +72,12 @@ public class State {
     }
 
     public List<State> getAllPossibleStates() {
-    	//System.out.println("kkk" + getBoard().getHeight());
+    	//System.out.println("kkk " + board.getHeight());
         List<State> possibleStates = new ArrayList<>();
-        List<LegalMove> availablePositions = this.board.getEmptyPositions();
+        List<LegalMove> availablePositions = board.getEmptyPositions();
         availablePositions.forEach(lm -> {
         	//System.out.println("this.board " + this.board.getHeight());
-            State newState = new State(this.board);
+            State newState = new State(board);
             //System.out.println("newState " + newState.getBoard().getHeight());
             newState.setPlayerNo(3 - this.playerNo);
             newState.getBoard().doMove(lm);
