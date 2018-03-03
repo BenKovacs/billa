@@ -130,7 +130,7 @@ public class GameBoard {
 	
 	public GameBoard clone(GameBoard bo) {
 		System.out.println("w = " + bo.getWidth() + " and h = " + bo.getHeight());
-		GameBoard clone = new GameBoard(bo.getWidth(), bo.getHeight());
+		GameBoard clone = new GameBoard(16, 14);
 
 		for (Player p : bo.players) {
 			Player cp = (Player) p.clone();
