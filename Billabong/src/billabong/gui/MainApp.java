@@ -1,4 +1,5 @@
 package billabong.gui;
+//241 and 203 doMove() or doMov()
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -21,6 +22,7 @@ import billabong.ai.MCTS;
 import billabong.ai.MCTSmove;
 import billabong.ai.MiniMax;
 import billabong.ai.model.MiniMaxNode;
+import billabong.mcts.MonteCarloTreeSearch;
 import billabong.model.GameBoard;
 import billabong.model.Kangaroo;
 import billabong.model.TurnState;
@@ -198,7 +200,7 @@ public class MainApp implements ActionListener {
 			doCalculateMoves();
 			break;
 		case "move":
-			doMove();
+			doMov();
 			break;
 		}
 	}
@@ -236,7 +238,7 @@ public class MainApp implements ActionListener {
 				System.out.println("Finished calcing moves in "+(end-start)+" ms");
 				mp.setState(TurnState.DepthComplete, end-start);
 				
-				doMove();
+				doMov();
 			}
 		};
 		
@@ -275,7 +277,14 @@ public class MainApp implements ActionListener {
 		};
 		new Thread(r).start();
 	}
-
+	
+	
+	private void doMov(){
+		
+		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
+		gb = mcts.findNextMove(gb, currentPlayer) ;
+		
+	}
 	
 	private void doMove() {
 		

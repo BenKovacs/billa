@@ -30,7 +30,7 @@ public class LegalChecker {
 				int midBoardSquare_x = ox + ((dx-ox)/2);
 				int midBoardSquare_y = oy + ((dy-oy)/2);
 			
-				BoardSquare midBoardSquare = boardCopy[midBoardSquare_y][midBoardSquare_x];
+				BoardSquare midBoardSquare = boardCopy[midBoardSquare_x][midBoardSquare_y];
 				//System.out.println("MidBoardSquare found");
 				if(midBoardSquare.isOccupied() && onlyOne(boardCopy, ox, oy, dx, dy))
 				{
@@ -72,7 +72,7 @@ public class LegalChecker {
 					cx--;
 					cy++;
 					
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
 					}
@@ -144,7 +144,7 @@ public class LegalChecker {
 				{
 					cy++;
 					
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
 					}
@@ -184,7 +184,7 @@ public class LegalChecker {
 				{
 					cx--;
 					
-					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
+					if(boardCopy[cx][cy].isOccupied()&& !boardCopy[cx][cy].isWater())
 					{	
 						middleCounter++;
 					}
