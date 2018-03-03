@@ -31,6 +31,7 @@ public class Node {
     public Node(Node node) {
         this.childArray = new ArrayList<>();
         this.state = new State(node.getState());
+        System.out.println(node.getState().getBoard().getHeight() + " " + node.getState().getBoard().getWidth());
         if (node.getParent() != null)
             this.parent = node.getParent();
         List<Node> childArray = node.getChildArray();
