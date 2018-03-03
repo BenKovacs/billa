@@ -27,7 +27,11 @@ public class State {
     }
 
     public State(GameBoard board) {
+    	System.out.println("new state with board is created");
+    	System.out.println("board copied from " + board.getHeight());
         this.board = new GameBoard(board);
+        System.out.println("new board " + this.board.getHeight());
+        
     }
 
     GameBoard getBoard() {
@@ -67,10 +71,13 @@ public class State {
     }
 
     public List<State> getAllPossibleStates() {
+    	//System.out.println("kkk" + getBoard().getHeight());
         List<State> possibleStates = new ArrayList<>();
         List<LegalMove> availablePositions = this.board.getEmptyPositions();
         availablePositions.forEach(lm -> {
+        	//System.out.println("this.board " + this.board.getHeight());
             State newState = new State(this.board);
+            //System.out.println("newState " + newState.getBoard().getHeight());
             newState.setPlayerNo(3 - this.playerNo);
             newState.getBoard().doMove(lm);
             possibleStates.add(newState);
