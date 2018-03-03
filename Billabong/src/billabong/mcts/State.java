@@ -20,6 +20,12 @@ public class State {
     }
 
     public State(State state) {
+    	if(state == null){
+    		System.out.println("fed state = null !!");
+    	}
+    	if(state.getBoard() == null){
+    		System.out.println("getBoard of fed state is null !!");
+    	}
         this.board = new GameBoard(state.getBoard());
         this.playerNo = state.getPlayerNo();
         this.visitCount = state.getVisitCount();
