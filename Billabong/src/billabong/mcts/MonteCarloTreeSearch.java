@@ -42,7 +42,7 @@ public class MonteCarloTreeSearch {
             // Phase 1 - Selection
             Node promisingNode = selectPromisingNode(rootNode);
             // Phase 2 - Expansion
-            if (promisingNode.getState().getBoard().checkStatus() == GameBoard.IN_PROGRESS)
+            if (promisingNode.getState().getBoard().isOver() == false)
                 expandNode(promisingNode);
 
             // Phase 3 - Simulation
@@ -97,7 +97,7 @@ public class MonteCarloTreeSearch {
             tempNode.getParent().getState().setWinScore(Integer.MIN_VALUE);
             return boardStatus;
         }
-        while (boardStatus == GameBoard.IN_PROGRESS) {
+        while (tempState.getBoard().isOver() == false) {
             tempState.togglePlayer();
             tempState.randomPlay();
             boardStatus = tempState.getBoard().checkStatus();

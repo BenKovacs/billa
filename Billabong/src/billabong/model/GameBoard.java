@@ -174,6 +174,41 @@ public class GameBoard {
 		k.getTeam().getKangaroos().remove(k);
 	}
 	
+	public int checkStatus(){
+		
+		int one = 0;
+    	int two = 0;
+    	
+    	
+    	for(int i = 0; i < 16; i++)
+    	{
+    		for(int j = 0; j < 14; j++)
+    		{
+    			if(bs[i][j].isOccupied())
+    			{
+    				if(bs[i][j].getOccupant().getTeam().getTeamId() == 1)
+    				{
+    					one++;
+    				}
+    				if(bs[i][j].getOccupant().getTeam().getTeamId() == 2)
+    				{
+    					two++;
+    				}
+    			}
+    		}
+    	}
+    	if(one == 0){
+    		return 1 ;
+    	}
+    	if(two == 0){
+    		return 2 ;
+    	}
+    	else{
+    		return -1 ; 
+    	}
+		
+	}
+	
 	public void doMove(LegalMove move){
 		Kangaroo k = move.kangaroo;
 		int tx = move.to.x;
