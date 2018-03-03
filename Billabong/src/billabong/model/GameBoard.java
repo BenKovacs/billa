@@ -130,7 +130,9 @@ public class GameBoard {
 	
 	public GameBoard clone(GameBoard bo) {
 		System.out.println("w = " + bo.getWidth() + " and h = " + bo.getHeight());
-		GameBoard clone = new GameBoard(16, 14);
+		GameBoard clone = new GameBoard(bo.getWidth(), bo.getHeight());
+		System.out.println("clone w = " + clone.width + " and clone h = " + clone.height);
+		System.out.println(" clone array w = " + clone.getBs().length + " and clone array h = " + clone.getBs()[0].length);
 
 		for (Player p : bo.players) {
 			Player cp = (Player) p.clone();
@@ -181,6 +183,9 @@ public class GameBoard {
     	{
     		for(int j = 0; j < 14; j++)
     		{
+    			if(bs == null){
+    				System.out.println("get fucked bitch"); //this should NOT print unless the code is fucked lol
+    			}
     			if(bs[i][j].isOccupied())
     			{
     				if(bs[i][j].getOccupant().getTeam().getTeamId() == 1)
