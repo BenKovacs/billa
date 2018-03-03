@@ -181,6 +181,9 @@ public class GameBoard {
     	{
     		for(int j = 0; j < 14; j++)
     		{
+    			if(bs == null){
+    				System.out.println("get fucked bitch"); //this should NOT print unless the code is fucked lol
+    			}
     			if(bs[i][j].isOccupied())
     			{
     				if(bs[i][j].getOccupant().getTeam().getTeamId() == 1)
