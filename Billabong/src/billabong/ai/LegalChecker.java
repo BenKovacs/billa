@@ -86,7 +86,7 @@ public class LegalChecker {
 					cx++;
 					cy--;
 					
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
 					}
@@ -100,7 +100,7 @@ public class LegalChecker {
 					cx++;
 					cy++;
 				
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
 					}
@@ -114,7 +114,7 @@ public class LegalChecker {
 					cx--;
 					cy--;
 					
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
 					}
@@ -157,7 +157,7 @@ public class LegalChecker {
 				{
 					cy--;
 				
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
 					}
@@ -170,7 +170,7 @@ public class LegalChecker {
 				{
 					cx++;
 					
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cx][cy].isOccupied())
 					{	
 						
 						middleCounter++;
