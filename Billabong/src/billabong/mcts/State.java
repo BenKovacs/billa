@@ -76,7 +76,7 @@ public class State {
     public List<State> getAllPossibleStates() {
     	//System.out.println("kkk " + board.getHeight());
         List<State> possibleStates = new ArrayList<>();
-        List<LegalMove> availablePositions = board.getEmptyPositions();
+        List<LegalMove> availablePositions = board.getEmptyPositions(this.playerNo);
         availablePositions.forEach(lm -> {
         	//System.out.println("this.board " + this.board.getHeight());
             State newState = new State(board);
@@ -98,7 +98,7 @@ public class State {
     }
 
     void randomPlay() {
-        List<LegalMove> availablePositions = this.board.getEmptyPositions();
+        List<LegalMove> availablePositions = this.board.getEmptyPositions(this.playerNo);
         int totalPossibilities = availablePositions.size();
         int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
         this.board.move(availablePositions.get(selectRandom).kangaroo,availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y);
@@ -107,5 +107,7 @@ public class State {
 
     void togglePlayer() {
         this.playerNo = 3 - this.playerNo;
+        //this.board.setCurrentPlayer(this.playerNo);
+        System.out.println("toogled to player " + playerNo);
     }
 }
