@@ -101,7 +101,8 @@ public class State {
         List<LegalMove> availablePositions = this.board.getEmptyPositions();
         int totalPossibilities = availablePositions.size();
         int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
-        this.board.doMove(availablePositions.get(selectRandom));
+        this.board.move(availablePositions.get(selectRandom).kangaroo.getClass(),availablePositions.get(selectRandom).to.x,kangaroo,availablePositions.get(selectRandom).to.y);
+        System.out.println("Random move positions " + availablePositions.get(selectRandom).from + " " + availablePositions.get(selectRandom).to);
     }
 
     void togglePlayer() {

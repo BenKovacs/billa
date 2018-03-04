@@ -81,6 +81,7 @@ public class MonteCarloTreeSearch {
     private void backPropogation(Node nodeToExplore, int playerNo) {
         Node tempNode = nodeToExplore;
         while (tempNode != null) {
+        	System.out.println("looping bitch");
             tempNode.getState().incrementVisit();
             if (tempNode.getState().getPlayerNo() == playerNo)
                 tempNode.getState().addScore(WIN_SCORE);
@@ -90,18 +91,21 @@ public class MonteCarloTreeSearch {
 
     private int simulateRandomPlayout(Node node) {
         Node tempNode = new Node(node);
-        System.out.println("node to explore " + tempNode.getState().getBoard().getHeight());
         State tempState = tempNode.getState();
         int boardStatus = tempState.getBoard().checkStatus();
-
         if (boardStatus == oponent) {
+            System.out.println("boardstatus = oponent");
             tempNode.getParent().getState().setWinScore(Integer.MIN_VALUE);
             return boardStatus;
         }
+        int cntr = 0;
         while (tempState.getBoard().isOver() == false) {
+            System.out.println("isover = false");
             tempState.togglePlayer();
             tempState.randomPlay();
             boardStatus = tempState.getBoard().checkStatus();
+            cntr++;
+            System.out.println(cntr + "iterations");
         }
 
         return boardStatus;
