@@ -57,12 +57,12 @@ public class MonteCarloTreeSearch {
 
         Node winnerNode = rootNode.getChildWithMaxScore();
         tree.setRoot(winnerNode);
-        String x = " " ;
+        /*String x = " " ;
         for(int i = 0; i < winnerNode.getState().getBoard().getKangaroos().size(); i++){
 			x = x + " winnerNode check yooo  " + winnerNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + winnerNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
 			System.lineSeparator();
 		}
-        System.out.println(x);
+        System.out.println(x);*/
         return winnerNode.getState().getBoard();
     }
 
@@ -81,6 +81,12 @@ public class MonteCarloTreeSearch {
             newNode.setParent(node);
             newNode.getState().setPlayerNo(node.getState().getOpponent());
             node.getChildArray().add(newNode);
+            /*String x = " " ;
+            for(int i = 0; i < newNode.getState().getBoard().getKangaroos().size(); i++){
+    			x = x + " winnerNode check yooo  " + newNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + newNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+    			System.lineSeparator();
+    		}
+            System.out.println(x);*/
         });
     }
 
@@ -91,6 +97,12 @@ public class MonteCarloTreeSearch {
             tempNode.getState().incrementVisit();
             if (tempNode.getState().getPlayerNo() == playerNo)
                 tempNode.getState().addScore(WIN_SCORE);
+            /*String x = " " ;
+            for(int i = 0; i < tempNode.getState().getBoard().getKangaroos().size(); i++){
+    			x = x + " winnerNode check yooo  " + tempNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + tempNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+    			System.lineSeparator();
+    		}
+            System.out.println(x);*/
             tempNode = tempNode.getParent();
         }
     }

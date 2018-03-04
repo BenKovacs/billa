@@ -83,7 +83,8 @@ public class State {
             State newState = new State(board);
             //System.out.println("newState " + newState.getBoard().getHeight());
             newState.setPlayerNo(3 - this.playerNo);
-            newState.getBoard().doMove(lm);
+            System.out.println(lm.from + " balabala " + lm.to);
+            newState.getBoard().move(lm.kangaroo,lm.to.x,lm.to.y);
             possibleStates.add(newState);
         });
         return possibleStates;
@@ -116,8 +117,8 @@ public class State {
 			//bp.repaint();
 			
 		} 
-        System.out.println("Random move positions " + availablePositions.get(selectRandom).from + " " + availablePositions.get(selectRandom).to);
-        System.out.println("kanga lapcounter = " + availablePositions.get(selectRandom).kangaroo.getLapCounter());
+        //System.out.println("Random move positions " + availablePositions.get(selectRandom).from + " " + availablePositions.get(selectRandom).to);
+        //System.out.println("kanga lapcounter = " + availablePositions.get(selectRandom).kangaroo.getLapCounter());
     }
     
     public boolean lapping(int x, int y, int tx, int ty) {
@@ -141,6 +142,6 @@ public class State {
     void togglePlayer() {
         this.playerNo = 3 - this.playerNo;
         //this.board.setCurrentPlayer(this.playerNo);
-        System.out.println("toogled to player " + playerNo);
+        //System.out.println("toogled to player " + playerNo);
     }
 }
