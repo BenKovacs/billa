@@ -48,6 +48,7 @@ public class MainApp implements ActionListener {
 	private JPanel panel;
 	private JLabel lblStartPlayerCurrent;
 	private BoardPanel bp;
+	private LinkedList<Point> points  ;
 
 	/**
 	 * Launch the application.
@@ -81,7 +82,7 @@ public class MainApp implements ActionListener {
 		numAI = settings.getNumberOfAIPlayers();
 		numKangas = settings.getNumberOfKangaroos();
 		aiDepth = settings.getDepthLevel();
-		
+		points = new LinkedList<>(); 
 		debugMode = settings.isDebugMode();
 		
 		// TODO Implement getting the board size and setting the board size. This will require some clever use of global variables as 16 and 14 are used everywhere
@@ -119,34 +120,42 @@ public class MainApp implements ActionListener {
 
 	}
 
-	private void createPlayers() {
-		players = new ArrayList<>();
+	
 		
-		LinkedList<Point> points = new LinkedList<>(); 
+		
 		//team 1.
-		points.add(new Point(10,7));
-		points.add(new Point(15,7));
-		points.add(new Point(14,8));
-		points.add(new Point(11,10));
-		points.add(new Point(10,12));
-		//team 2
-		points.add(new Point(11,7));
-		points.add(new Point(10,8));
-		points.add(new Point(15,8));
-		points.add(new Point(12,10));
-		points.add(new Point(14,12));
-		//team 3
-		points.add(new Point(12,7));
-		points.add(new Point(11,8));
-		points.add(new Point(12,9));
-		points.add(new Point(13,10));
-		points.add(new Point(11,12));
-		//team 4
-		points.add(new Point(13,7));
-		points.add(new Point(12,8));
-		points.add(new Point(14,9));
-		points.add(new Point(15,10));
-		points.add(new Point(11,13));
+		private Point randomPoint(LinkedList<Point> points)
+	    {
+	        int x = (int)(Math.random()*8 + 8);
+	        int y = (int)(Math.random()*6 + 8);
+	        Point temp = new Point(x, y);
+	        if(points.size()==0)
+	            {
+	                System.out.println(x + " " + y);
+	                return temp;
+	            }
+	       
+	        for(int j = 0; j < points.size(); j++)
+	        {
+	            if(temp.x == points.get(j).x && temp.y == points.get(j).y)
+	                {
+	                    Point fail = randomPoint(points);
+	                }
+	        }
+	        System.out.println(x + " " + y);
+	        return temp;
+	    }
+	   
+	    private void createPlayers() {
+	       ArrayList<Player> players = new ArrayList<Player>();
+	       
+	        LinkedList<Point> points = new LinkedList<Point>();
+	       
+	        for(int i = 0; i < 41; i++)
+	        {  
+	            Point temp = randomPoint(points);
+	            points.add(temp);  
+	        }
 		
 
 		for (int i=0;i<numHuman; i++){
