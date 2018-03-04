@@ -57,6 +57,12 @@ public class MonteCarloTreeSearch {
 
         Node winnerNode = rootNode.getChildWithMaxScore();
         tree.setRoot(winnerNode);
+        String x = " " ;
+        for(int i = 0; i < winnerNode.getState().getBoard().getKangaroos().size(); i++){
+			x = x + " winnerNode check yooo  " + winnerNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + winnerNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+			System.lineSeparator();
+		}
+        System.out.println(x);
         return winnerNode.getState().getBoard();
     }
 
