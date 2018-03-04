@@ -97,8 +97,10 @@ public class MonteCarloTreeSearch {
     			System.lineSeparator();
     		}
             System.out.println(x);*/
+            
             tempNode = tempNode.getParent();
         }
+        
     }
 
     private int simulateRandomPlayout(Node node) {
