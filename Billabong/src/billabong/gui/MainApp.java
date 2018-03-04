@@ -280,7 +280,11 @@ public class MainApp implements ActionListener {
 	private void doMov(){
 		
 		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
+		System.out.println("finding move ");
 		gb = mcts.findNextMove(gb, currentPlayer) ;
+		System.out.println("move found, board returned");
+		bp.repaint();
+		System.out.println("repainted loool");
 		
 	}
 	

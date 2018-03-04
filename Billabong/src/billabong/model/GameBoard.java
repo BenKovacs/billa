@@ -31,7 +31,6 @@ public class GameBoard {
 	}
 
 	public GameBoard(int width, int height) {
-		super();
 		this.width = width;
 		this.height = height;
 
@@ -131,7 +130,7 @@ public class GameBoard {
 	public GameBoard clone(GameBoard bo) {
 		System.out.println("w = " + bo.getWidth() + " and h = " + bo.getHeight());
 		GameBoard clone = new GameBoard(bo.getWidth(), bo.getHeight());
-		System.out.println("clone w = " + clone.width + " and clone h = " + clone.height);
+		//System.out.println("clone w = " + clone.width + " and clone h = " + clone.height);
 		System.out.println(" clone array w = " + clone.getBs().length + " and clone array h = " + clone.getBs()[0].length);
 
 		for (Player p : bo.players) {
