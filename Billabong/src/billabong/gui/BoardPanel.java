@@ -96,7 +96,7 @@ public class BoardPanel extends JPanel {
 				setBackground(c);
 			}
 			if (gameBoard.getBoardSquare(x, y).isOccupied()){
-				
+				System.out.println("panel coords occupied are x " + x + " and y " + y);
 				Color col = gameBoard.getBoardSquare(x, y).getOccupant().getTeam().getColor();
 				g.setColor(col);
 				int width = this.getWidth()*3/4;

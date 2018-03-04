@@ -144,7 +144,7 @@ public class GameBoard {
 	}
 
 	public List<Player> getPlayers() {
-		return players;
+		return players; 
 	}
 
 	/**
