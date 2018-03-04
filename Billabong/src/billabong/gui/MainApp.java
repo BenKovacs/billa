@@ -291,13 +291,17 @@ public class MainApp implements ActionListener {
 				x = x + " pre MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
 				System.lineSeparator();
 			}
-		this.gb = gb.clone(mcts.findNextMove(gb, 1));
-		System.out.println("move found, board returned");
 		
+		//this.gb = gb.clone(mcts.findNextMove(gb, currentPlayer));
+		this.gb = mcts.findNextMove(gb, currentPlayer);
+		if (currentPlayer == players.size()){
+			currentPlayer = 0;
+		}
 		bp.setGameBoard(gb);
-		
 		bp.repaint();
 		System.out.println(x);
+		
+		
 		for(int i = 0; i < gb.getKangaroos().size(); i++){
 			System.out.println( "post MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga" );
 			System.lineSeparator();
