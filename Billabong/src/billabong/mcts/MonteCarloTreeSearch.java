@@ -106,6 +106,8 @@ public class MonteCarloTreeSearch {
             boardStatus = tempState.getBoard().checkStatus();
             cntr++;
             System.out.println(cntr + "iterations");
+            
+            
         }
 
         return boardStatus;
