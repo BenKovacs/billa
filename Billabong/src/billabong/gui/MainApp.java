@@ -300,6 +300,12 @@ public class MainApp implements ActionListener {
 			System.out.println( "post MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga" );
 			System.lineSeparator();
 		}
+		
+		for(int i = 0; i < gb.getPlayers().size(); i++){
+			for(int j= 0 ; j < gb.getPlayers().get(i).getKangaroos().size(); j++){
+				System.out.println("kannga " + j  + " from player " + i + " at position " + gb.getPlayers().get(i).getKangaroos().get(j).getX() + "   " + gb.getPlayers().get(i).getKangaroos().get(j).getY());
+			}
+		}
 		System.out.println("repainted loool");
 		
 	}
