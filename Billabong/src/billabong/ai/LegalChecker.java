@@ -71,7 +71,7 @@ public class LegalChecker {
 				{
 					cx--;
 					cy++;
-					
+					if(boardCopy[cx][cy].isWater()) return false;
 					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
@@ -85,7 +85,7 @@ public class LegalChecker {
 				{
 					cx++;
 					cy--;
-					
+					if(boardCopy[cx][cy].isWater()) return false;
 					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
@@ -99,7 +99,7 @@ public class LegalChecker {
 				{
 					cx++;
 					cy++;
-				
+					if(boardCopy[cx][cy].isWater()) return false;
 					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
@@ -113,7 +113,7 @@ public class LegalChecker {
 				{
 					cx--;
 					cy--;
-					
+					if(boardCopy[cx][cy].isWater()) return false;
 					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
@@ -143,7 +143,7 @@ public class LegalChecker {
 				while(cy!=dy)
 				{
 					cy++;
-					
+					if(boardCopy[cx][cy].isWater()) return false;
 					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
@@ -156,7 +156,7 @@ public class LegalChecker {
 				while(cy!=dy)
 				{
 					cy--;
-				
+					if(boardCopy[cx][cy].isWater()) return false;
 					if(boardCopy[cx][cy].isOccupied())
 					{	
 						middleCounter++;
@@ -169,7 +169,7 @@ public class LegalChecker {
 				while(cx!=dx)
 				{
 					cx++;
-					
+					if(boardCopy[cx][cy].isWater()) return false;
 					if(boardCopy[cx][cy].isOccupied())
 					{	
 						
@@ -183,7 +183,7 @@ public class LegalChecker {
 				while(cx!=dx)
 				{
 					cx--;
-					
+					if(boardCopy[cx][cy].isWater()) return false;
 					if(boardCopy[cx][cy].isOccupied()&& !boardCopy[cx][cy].isWater())
 					{	
 						middleCounter++;

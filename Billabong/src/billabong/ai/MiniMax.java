@@ -5,6 +5,7 @@ import java.util.List;
 
 import billabong.ai.model.LegalMove;
 import billabong.ai.model.MiniMaxNode;
+import billabong.ai.MCTSmove;
 import billabong.gui.ProgressBarPanel;
 import billabong.model.BoardSquare;
 import billabong.model.GameBoard;
@@ -91,19 +92,21 @@ public class MiniMax {
 			return;
 		}
 		if (node.getChildren().isEmpty()){
-			for (Kangaroo k: node.getBoard().getKangaroos()){
-				if (k.getTeam().getTeamId()!=player.getTeamId()){
-					continue;
-				}
+//			for (Kangaroo k: node.getBoard().getKangaroos()){
+//				if (k.getTeam().getTeamId()!=player.getTeamId()){
+//					continue;
+//				}
 				// Get the Moves (MiniMaxNodes)
-				List<MiniMaxNode> moves = getMoves(node, k);
+//				List<MiniMaxNode> moves = getMoves(node, k);
+				List<MiniMaxNode> moves = getEndMoves(node, player.getTeamId());
 				// Add them the node.children
 				node.getChildren().addAll(moves);
 				// Reset the nodes utility to 0 as it will be recalculated using the minmax stuff
 				node.utility = 0;
 				
 			}
-		}else{
+//	}
+	else{
 			for (MiniMaxNode child: node.getChildren()){
 				processNode(child, player);
 			}
@@ -154,6 +157,38 @@ public class MiniMax {
 			}
 			// All else are illegal jump moves
 		}
+		return moves;
+	}
+	
+	private List<MiniMaxNode> getEndMoves(MiniMaxNode node, int team){
+		List<MiniMaxNode> moves = new ArrayList<>();
+		MCTSmove endstate = new MCTSmove(node.getBoard().getboard(), team);
+		List<LegalMove> allMoves = endstate.getList();
+		for(int i = 0; i< allMoves.size(); i++)
+		{
+			LegalMove tempMove = allMoves.get(i);
+			MiniMaxNode tempNode = new MiniMaxNode(node.getBoard());
+			tempNode.originX = tempMove.from.x;
+			tempNode.originY = tempMove.from.y;
+			tempNode.move = tempMove;
+			tempNode.kangaMoving = tempMove.kangaroo;
+			if(Math.abs(tempMove.from.x - tempMove.to.x) > 1 || Math.abs(tempMove.from.y - tempMove.to.y) > 1)
+			{
+				tempNode.move.jump = true;
+			}	
+			int dx = tempMove.to.x - tempMove.from.x;
+			int dy = tempMove.to.y - tempMove.from.y;
+			//moves.add(tempNode);
+			try {
+				
+				tryMove(moves, node.getBoard(), tempMove.kangaroo, dx, dy, node.cumulativeScore);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//moves.add(tempNode);
+		}
+		
 		return moves;
 	}
 
@@ -293,7 +328,7 @@ public class MiniMax {
 	}
 
 	private void tryMove(List<MiniMaxNode> moves, GameBoard board, Kangaroo k, int x, int y, double cumulativeScore) throws Exception {
-		if (legalMove(board, k, x, y)){
+		if (true){
 			MiniMaxNode move = getMove(board, k, k.getX()+x, k.getY()+y, cumulativeScore);
 			moves.add(move);
 		}
@@ -321,15 +356,15 @@ public class MiniMax {
 		}
 		move.kangaMoving = ckToMove;
 		move.move = lm;
-		move.score = Diffuser.getInstance().weights[tx][ty];
+		move.score = Diffuser.getInstance().weights[tx][ty]-Diffuser.getInstance().weights[k.getX()][k.getY()];
 		if (lapping(k.getX(), k.getY(), tx, ty)){
 			move.score += 360;
 		}
 		if (unLapping(k.getX(), k.getY(), tx, ty)){
-			move.score -= 99999;
+			move.score -= 99999999;
 		}
 		if (k.getTeam().getTeamId() != this.currentPlayerTurn.getTeamId()){
-			move.score = - move.score;
+			move.score = - 0.6*move.score;
 		}
 		move.cumulativeScore = cumulativeScore + move.score;
 		move.utility = move.cumulativeScore;

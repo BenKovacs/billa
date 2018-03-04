@@ -281,15 +281,27 @@ public class MainApp implements ActionListener {
 	
 	private void doMov(){
 		
+<<<<<<< HEAD
+=======
+		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
+		System.out.println("finding move ");
+
+>>>>>>> origin/master
 		String x = " " ;
 		 for(int i = 0; i < gb.getKangaroos().size(); i++){
 				x = x + " pre MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
 				System.lineSeparator();
 			}
+<<<<<<< HEAD
 	     
 		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
 		System.out.println("finding move ");
 		gb = mcts.findNextMove(gb, 1) ;
+=======
+	        
+		
+		gb = mcts.findNextMove(gb, currentPlayer) ;
+>>>>>>> origin/master
 
 		System.out.println("move found, board returned");
 		bp.setGameBoard(gb);
@@ -299,6 +311,12 @@ public class MainApp implements ActionListener {
 		for(int i = 0; i < gb.getKangaroos().size(); i++){
 			System.out.println( "post MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga" );
 			System.lineSeparator();
+		}
+		
+		for(int i = 0; i < gb.getPlayers().size(); i++){
+			for(int j= 0 ; j < gb.getPlayers().get(i).getKangaroos().size(); j++){
+				System.out.println("kannga " + j  + " from player " + i + " at position " + gb.getPlayers().get(i).getKangaroos().get(j).getX() + "   " + gb.getPlayers().get(i).getKangaroos().get(j).getY());
+			}
 		}
 		System.out.println("repainted loool");
 		
