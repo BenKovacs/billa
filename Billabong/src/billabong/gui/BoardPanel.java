@@ -23,7 +23,7 @@ public class BoardPanel extends JPanel {
 	}
 
 	public void setGameBoard(GameBoard gb) {
-		this.gameBoard.clone(gb);
+		this.gameBoard = gb;
 		System.out.println("panel adjusted to new gb");
 		String x = " " ;
 		 for(int i = 0; i < gb.getKangaroos().size(); i++){
@@ -31,6 +31,7 @@ public class BoardPanel extends JPanel {
 				System.lineSeparator();
 			}
 		System.out.println(x);
+		
 	}
 
 	private SquarePanel[][] sp;
