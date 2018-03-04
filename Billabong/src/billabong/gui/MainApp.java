@@ -283,6 +283,8 @@ public class MainApp implements ActionListener {
 		System.out.println("finding move ");
 		gb = mcts.findNextMove(gb, currentPlayer) ;
 		System.out.println("move found, board returned");
+		
+		
 		bp.repaint();
 		System.out.println("repainted loool");
 		

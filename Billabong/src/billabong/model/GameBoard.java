@@ -77,7 +77,7 @@ public class GameBoard {
 		
 		List<LegalMove> list = new LinkedList<LegalMove>() ;
 		Kangaroo current; 
-				
+		LegalChecker lc = new LegalChecker() ;
 		for(int i = 0 ; i < 16; i++){
 			for(int j = 0 ; j < 14; j++){
 				if(bs[i][j].isOccupied() && bs[i][j].getOccupant().getTeam().getTeamId() == currentPlayer ){ /// need to get current plaer somehow to check 
@@ -89,7 +89,7 @@ public class GameBoard {
 								System.out.println( "Move is not added to movelist!" );
 							}
 							 
-							else if(LegalChecker.checkLegal(bs, i, j, x, y)){
+							else if(lc.checkLegal(bs, i, j, x, y)){
 								LegalMove m = new LegalMove(i, j, x, y, current) ;
 								list.add(m) ;
 								//System.out.println("move " + y + " " + x + " added to list");

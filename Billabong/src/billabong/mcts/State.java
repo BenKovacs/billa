@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.text.Position;
 
+import billabong.ai.MiniMax;
 import billabong.ai.model.LegalMove;
 import billabong.model.GameBoard;
 
@@ -102,8 +103,40 @@ public class State {
         int totalPossibilities = availablePositions.size();
         int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
         this.board.move(availablePositions.get(selectRandom).kangaroo,availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y);
+        if(lapping(availablePositions.get(selectRandom).kangaroo.getX(), availablePositions.get(selectRandom).kangaroo.getY(), availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
+        	availablePositions.get(selectRandom).kangaroo.incrementLapCounter();
+		}
+        if(unLapping(availablePositions.get(selectRandom).kangaroo.getX(), availablePositions.get(selectRandom).kangaroo.getY(), availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
+        	availablePositions.get(selectRandom).kangaroo.decrementLapCounter();
+		}
+        if (availablePositions.get(selectRandom).kangaroo.getLapCounter() > 2) {
+			// Done the laps
+			// Remove the kanga from the game
+			board.removeKangarooFromPlay(availablePositions.get(selectRandom).kangaroo);
+			//bp.repaint();
+			
+		} 
         System.out.println("Random move positions " + availablePositions.get(selectRandom).from + " " + availablePositions.get(selectRandom).to);
+        System.out.println("kanga lapcounter = " + availablePositions.get(selectRandom).kangaroo.getLapCounter());
     }
+    
+    public boolean lapping(int x, int y, int tx, int ty) {
+		if (y>7 && ty>7){
+			if (x>7 && tx<8){
+				return true;
+			}
+		}
+		return false;
+	}
+    
+    public boolean unLapping(int x, int y, int tx, int ty) {
+		if (y>7 && ty>7){
+			if (tx>7 && x<8){
+				return true;
+			}
+		}
+		return false;
+	}
 
     void togglePlayer() {
         this.playerNo = 3 - this.playerNo;

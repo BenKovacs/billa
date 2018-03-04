@@ -6,7 +6,7 @@ import billabong.model.BoardSquare;
 public class LegalChecker {
 	
 	
-	public static Boolean checkLegal(BoardSquare[][] boardCopy, int ox, int oy, int dx, int dy)
+	public Boolean checkLegal(BoardSquare[][] boardCopy, int ox, int oy, int dx, int dy)
 	{
 		//if(dx>13 || dy > 15) return false;
 		int deltaX = dx-ox;
