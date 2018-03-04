@@ -25,6 +25,8 @@ public class BoardPanel extends JPanel {
 	 * @param j 
 	 * @param i 
 	 */
+	
+	
 	public BoardPanel(GameBoard gb) {
 		this.gameBoard = gb;
 		setLayout(new GridLayout(gb.getHeight(), gb.getWidth(), 0, 0));
