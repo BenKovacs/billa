@@ -17,6 +17,15 @@ import billabong.model.GameBoard;
 public class BoardPanel extends JPanel {
 
 	private GameBoard gameBoard;
+	public GameBoard getGameBoard() {
+		return gameBoard;
+	}
+
+	public void setGameBoard(GameBoard gb) {
+		this.gameBoard.clone(gb);
+		System.out.println("panel adjusted to new gb");
+	}
+
 	private SquarePanel[][] sp;
 
 	/**
