@@ -283,11 +283,27 @@ public class MainApp implements ActionListener {
 		
 		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
 		System.out.println("finding move ");
+<<<<<<< HEAD
 		gb = mcts.findNextMove(gb, 1) ;
+=======
+		String x = " " ;
+		 for(int i = 0; i < gb.getKangaroos().size(); i++){
+				x = x + " pre MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+				System.lineSeparator();
+			}
+	        
+		
+		gb = mcts.findNextMove(gb, currentPlayer) ;
+>>>>>>> origin/master
 		System.out.println("move found, board returned");
 		bp.setGameBoard(gb);
 		
 		bp.repaint();
+		System.out.println(x);
+		for(int i = 0; i < gb.getKangaroos().size(); i++){
+			System.out.println( "post MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga" );
+			System.lineSeparator();
+		}
 		System.out.println("repainted loool");
 		
 	}
