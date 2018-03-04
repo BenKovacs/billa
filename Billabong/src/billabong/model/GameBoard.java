@@ -240,7 +240,10 @@ public class GameBoard {
     			}
     		}
     	}
-    	if(one < 1 || two < 1) return true;
+    	if(one < 1 || two < 1){
+    		System.out.println("game is over yo !");
+    		return true;
+    	}
     	else return false;
     }
 	
