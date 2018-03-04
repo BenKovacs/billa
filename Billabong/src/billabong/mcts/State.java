@@ -84,7 +84,6 @@ public class State {
             State newState = new State(board);
             //System.out.println("newState " + newState.getBoard().getHeight());
             newState.setPlayerNo(3 - this.playerNo);
-            System.out.println(lm.from + " balabala " + lm.to);
             newState.getBoard().move(lm.kangaroo,lm.to.x,lm.to.y);
             possibleStates.add(newState);
         });*/

@@ -291,8 +291,9 @@ public class MainApp implements ActionListener {
 				x = x + " pre MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
 				System.lineSeparator();
 			}
-		gb = mcts.findNextMove(gb, 1) ;
+		this.gb = gb.clone(mcts.findNextMove(gb, 1));
 		System.out.println("move found, board returned");
+		
 		bp.setGameBoard(gb);
 		
 		bp.repaint();

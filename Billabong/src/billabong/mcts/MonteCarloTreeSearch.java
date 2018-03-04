@@ -81,12 +81,6 @@ public class MonteCarloTreeSearch {
             newNode.setParent(node);
             newNode.getState().setPlayerNo(node.getState().getOpponent());
             node.getChildArray().add(newNode);
-            /*String x = " " ;
-            for(int i = 0; i < newNode.getState().getBoard().getKangaroos().size(); i++){
-    			x = x + " winnerNode check yooo  " + newNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + newNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
-    			System.lineSeparator();
-    		}
-            System.out.println(x);*/
         });
     }
 
