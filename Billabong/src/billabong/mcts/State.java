@@ -34,7 +34,7 @@ public class State {
     	//System.out.println("new state with board is created");
     	//System.out.println("board copied from " + b.getHeight());
         this.board = new GameBoard(16,14);
-        this.board = board.clone(b);
+        this.board = b.clone();
         //System.out.println("new board " + this.board.getHeight());
         
     }
@@ -89,7 +89,7 @@ public class State {
             possibleStates.add(newState);
         });*/
     	List<State> possibleStates = new ArrayList<State>() ;
-    	
+    	System.out.println("board width + height " + board.getWidth() + " " + board.getHeight());
     	MCTSmove mctsm = new MCTSmove(board.getBs(), playerNo) ;
     	
     	ArrayList<LegalMove> lmList = new ArrayList<LegalMove>() ;
@@ -97,9 +97,9 @@ public class State {
     	lmList = mctsm.getList() ;
     	
     	for(int i = 0 ; i < lmList.size() ; i++){
-    		GameBoard b = new GameBoard(this.getBoard()) ;
-    		b.doMove(lmList.get(i)) ;
-    		State s = new State(b) ;
+    		
+    		board.move(lmList.get(i).kangaroo, lmList.get(i).to.x,  lmList.get(i).to.y) ;
+    		State s = new State(board) ;
     		possibleStates.add(s) ;
     	}
         return possibleStates;
