@@ -12,6 +12,7 @@ import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import billabong.ai.MiniMax;
+import billabong.ai.model.LegalMove;
 import billabong.ai.model.MiniMaxNode;
 import billabong.mcts.MonteCarloTreeSearch;
 import billabong.model.GameBoard;
@@ -279,14 +281,22 @@ public class MainApp implements ActionListener {
 	
 	private void doMov(){
 		
-		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
+		/*MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
 		System.out.println("finding move ");
 		gb = mcts.findNextMove(gb, currentPlayer) ;
 		System.out.println("move found, board returned");
 		
 		
 		bp.repaint();
-		System.out.println("repainted loool");
+		System.out.println("repainted loool");*/
+		
+		
+	        List<LegalMove> availablePositions = this.gb.getEmptyPositions(1);
+	        int totalPossibilities = availablePositions.size();
+	        int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
+	        this.gb.move(availablePositions.get(selectRandom).kangaroo,availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y);
+	        System.out.println("Random move positions " + availablePositions.get(selectRandom).from + " " + availablePositions.get(selectRandom).to);
+	        bp.repaint();
 		
 	}
 	
