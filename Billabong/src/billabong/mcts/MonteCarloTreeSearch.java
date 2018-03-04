@@ -90,6 +90,7 @@ public class MonteCarloTreeSearch {
 
     private int simulateRandomPlayout(Node node) {
         Node tempNode = new Node(node);
+        System.out.println("node to explore " + tempNode.getState().getBoard().getHeight());
         State tempState = tempNode.getState();
         int boardStatus = tempState.getBoard().checkStatus();
 

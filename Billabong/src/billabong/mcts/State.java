@@ -20,18 +20,20 @@ public class State {
     }
 
     public State(State state) {
-        this.board = new GameBoard(state.getBoard());
+        //this.board = new GameBoard(state.getBoard());
+        this.board = new GameBoard(16,14);
+        this.board = board.clone(state.getBoard());
         this.playerNo = state.getPlayerNo();
         this.visitCount = state.getVisitCount();
         this.winScore = state.getWinScore();
     }
 
     public State(GameBoard b) {
-    	System.out.println("new state with board is created");
-    	System.out.println("board copied from " + b.getHeight());
+    	//System.out.println("new state with board is created");
+    	//System.out.println("board copied from " + b.getHeight());
         this.board = new GameBoard(16,14);
         this.board = board.clone(b);
-        System.out.println("new board " + this.board.getHeight());
+        //System.out.println("new board " + this.board.getHeight());
         
     }
 
