@@ -106,7 +106,7 @@ public class MonteCarloTreeSearch {
         }
         //int cntr = 0;
         while (tempState.getBoard().isOver() == false) {
-            System.out.println("isover = false");
+            //System.out.println("isover = false");
             tempState.togglePlayer();
             tempState.randomPlay();
             boardStatus = tempState.getBoard().checkStatus();
