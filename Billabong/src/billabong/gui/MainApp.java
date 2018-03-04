@@ -283,7 +283,7 @@ public class MainApp implements ActionListener {
 		
 		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
 		System.out.println("finding move ");
-		gb = mcts.findNextMove(gb, currentPlayer) ;
+		gb = mcts.findNextMove(gb, 1) ;
 		System.out.println("move found, board returned");
 		bp.setGameBoard(gb);
 		
