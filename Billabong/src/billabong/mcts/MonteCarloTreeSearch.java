@@ -98,18 +98,18 @@ public class MonteCarloTreeSearch {
             tempNode.getParent().getState().setWinScore(Integer.MIN_VALUE);
             return boardStatus;
         }
-        int cntr = 0;
+        //int cntr = 0;
         while (tempState.getBoard().isOver() == false) {
             System.out.println("isover = false");
             tempState.togglePlayer();
             tempState.randomPlay();
             boardStatus = tempState.getBoard().checkStatus();
-            cntr++;
-            System.out.println(cntr + "iterations");
-            
-            
-        }
 
+            //cntr++;
+            //System.out.println(cntr + "iterations");
+
+        }
+        System.out.println("finished this shit");
         return boardStatus;
     }
     

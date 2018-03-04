@@ -20,6 +20,7 @@ public class GameBoard {
 	private List<Kangaroo> kangaroos = new ArrayList<>(); // just an ease of access to all the kangaroos for all the players on the gameboard
 	private List<Player> players = new ArrayList<>();
 	private int tx, ty, tnx, tny = -1;
+	//private Player currentPlayer ;
 	
 	public BoardSquare[][] getboard(){
 		
@@ -52,6 +53,7 @@ public class GameBoard {
 		bs[7][7].setWater(true);
 		bs[8][7].setWater(true);
 		bs[9][7].setWater(true);
+		//currentPlayer = players.get(0);
 
 	}
 
@@ -71,14 +73,14 @@ public class GameBoard {
 		return bs;
 	}
 	
-	public List<LegalMove> getEmptyPositions(){
+	public List<LegalMove> getEmptyPositions(int currentPlayer){
 		
 		List<LegalMove> list = new LinkedList<LegalMove>() ;
 		Kangaroo current; 
 				
 		for(int i = 0 ; i < 16; i++){
 			for(int j = 0 ; j < 14; j++){
-				if(bs[i][j].isOccupied() && bs[i][j].getOccupant().getTeam().getTeamId() == 1 ){ /// need to get current plaer somehow to check 
+				if(bs[i][j].isOccupied() && bs[i][j].getOccupant().getTeam().getTeamId() == currentPlayer ){ /// need to get current plaer somehow to check 
 					current = bs[i][j].getOccupant() ;
 					for(int x = 0 ; x < 16; x++){
 						for(int y = 0; y < 14; y++){
@@ -241,4 +243,12 @@ public class GameBoard {
     	if(one < 1 || two < 1) return true;
     	else return false;
     }
+	
+	/*public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayer(int currentPlayer) {
+		this.currentPlayer = players.get(currentPlayer-1);
+	}*/
 }
