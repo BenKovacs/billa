@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.text.Position;
 
+import billabong.ai.MCTSmove;
 import billabong.ai.MiniMax;
 import billabong.ai.model.LegalMove;
 import billabong.model.GameBoard;
@@ -75,7 +76,7 @@ public class State {
     }
 
     public List<State> getAllPossibleStates() {
-    	//System.out.println("kkk " + board.getHeight());
+    	/*//System.out.println("kkk " + board.getHeight());
         List<State> possibleStates = new ArrayList<>();
         List<LegalMove> availablePositions = board.getEmptyPositions(this.playerNo);
         availablePositions.forEach(lm -> {
@@ -86,7 +87,21 @@ public class State {
             System.out.println(lm.from + " balabala " + lm.to);
             newState.getBoard().move(lm.kangaroo,lm.to.x,lm.to.y);
             possibleStates.add(newState);
-        });
+        });*/
+    	List<State> possibleStates = new ArrayList<State>() ;
+    	
+    	MCTSmove mctsm = new MCTSmove(board.getBs(), playerNo) ;
+    	
+    	ArrayList<LegalMove> lmList = new ArrayList<LegalMove>() ;
+    	
+    	lmList = mctsm.getList() ;
+    	
+    	for(int i = 0 ; i < lmList.size() ; i++){
+    		GameBoard b = new GameBoard(this.getBoard()) ;
+    		b.doMove(lmList.get(i)) ;
+    		State s = new State(b) ;
+    		possibleStates.add(s) ;
+    	}
         return possibleStates;
     }
 
