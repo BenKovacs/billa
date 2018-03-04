@@ -103,10 +103,10 @@ public class State {
         int totalPossibilities = availablePositions.size();
         int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
         this.board.move(availablePositions.get(selectRandom).kangaroo,availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y);
-        if(lapping(availablePositions.get(selectRandom).kangaroo.getX(), availablePositions.get(selectRandom).kangaroo.getY(), availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
+        if(lapping(availablePositions.get(selectRandom).from.x, availablePositions.get(selectRandom).from.y, availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
         	availablePositions.get(selectRandom).kangaroo.incrementLapCounter();
 		}
-        if(unLapping(availablePositions.get(selectRandom).kangaroo.getX(), availablePositions.get(selectRandom).kangaroo.getY(), availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
+        if(unLapping(availablePositions.get(selectRandom).from.x, availablePositions.get(selectRandom).from.y, availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
         	availablePositions.get(selectRandom).kangaroo.decrementLapCounter();
 		}
         if (availablePositions.get(selectRandom).kangaroo.getLapCounter() > 2) {

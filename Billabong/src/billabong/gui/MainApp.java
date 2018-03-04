@@ -281,25 +281,57 @@ public class MainApp implements ActionListener {
 	
 	private void doMov(){
 		
-		/*MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
+		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
 		System.out.println("finding move ");
 		gb = mcts.findNextMove(gb, currentPlayer) ;
 		System.out.println("move found, board returned");
 		
 		
 		bp.repaint();
-		System.out.println("repainted loool");*/
+		System.out.println("repainted loool");
 		
-		
-	        List<LegalMove> availablePositions = this.gb.getEmptyPositions(1);
+	}
+	       /* List<LegalMove> availablePositions = this.gb.getEmptyPositions(1);
 	        int totalPossibilities = availablePositions.size();
 	        int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
 	        this.gb.move(availablePositions.get(selectRandom).kangaroo,availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y);
 	        System.out.println("Random move positions " + availablePositions.get(selectRandom).from + " " + availablePositions.get(selectRandom).to);
 	        bp.repaint();
+	        if(lapping(availablePositions.get(selectRandom).from.x, availablePositions.get(selectRandom).from.y, availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
+	        	availablePositions.get(selectRandom).kangaroo.incrementLapCounter();
+			}
+	        if(unLapping(availablePositions.get(selectRandom).kangaroo.getX(), availablePositions.get(selectRandom).kangaroo.getY(), availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
+	        	availablePositions.get(selectRandom).kangaroo.decrementLapCounter();
+			}
+	        if (availablePositions.get(selectRandom).kangaroo.getLapCounter() > 2) {
+				// Done the laps
+				// Remove the kanga from the game
+				gb.removeKangarooFromPlay(availablePositions.get(selectRandom).kangaroo);
+				//bp.repaint();
+				
+			} 
+	        System.out.println("Random move positions " + availablePositions.get(selectRandom).from + " " + availablePositions.get(selectRandom).to);
+	        System.out.println("kanga lapcounter = " + availablePositions.get(selectRandom).kangaroo.getLapCounter());
 		
 	}
-	
+	 public boolean lapping(int x, int y, int tx, int ty) {
+			if (y>7 && ty>7){
+				if (x>7 && tx<8){
+					return true;
+				}
+			}
+			return false;
+		}
+	    
+	    public boolean unLapping(int x, int y, int tx, int ty) {
+			if (y>7 && ty>7){
+				if (tx>7 && x<8){
+					return true;
+				}
+			}
+			return false;
+		}
+	*/
 	private void doMove() {
 		
 		MiniMaxNode bestMove = MiniMax.getInstance().getBestMove();
