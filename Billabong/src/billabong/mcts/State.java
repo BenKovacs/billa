@@ -34,7 +34,7 @@ public class State {
     	//System.out.println("new state with board is created");
     	//System.out.println("board copied from " + b.getHeight());
         this.board = new GameBoard(16,14);
-        this.board = b.clone();
+        this.board = board.clone(b);
         //System.out.println("new board " + this.board.getHeight());
         
     }

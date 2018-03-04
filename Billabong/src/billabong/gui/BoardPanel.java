@@ -17,6 +17,7 @@ import billabong.model.GameBoard;
 public class BoardPanel extends JPanel {
 
 	private GameBoard gameBoard;
+	
 	public GameBoard getGameBoard() {
 		return gameBoard;
 	}
