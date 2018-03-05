@@ -14,6 +14,10 @@ public class MonteCarloTreeSearch {
     boolean DEBUG2 = true;
     boolean DEBUG3 = true;
     boolean DEBUG4 = true;
+    
+    public MonteCarloTreeSearch(){
+    	level = 3 ;
+    }
 
     public MonteCarloTreeSearch(int PlayerNumber) {
         this.level = 3;
