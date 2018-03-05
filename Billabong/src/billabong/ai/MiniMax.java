@@ -372,8 +372,15 @@ public class MiniMax {
 	}
 
 	public boolean unLapping(int x, int y, int tx, int ty) {
-		if (y>7 && ty>7){
+		if (y>7 && ty<7 && tx>10){
 			if (tx>7 && x<8){
+				return true;
+			}
+		}
+		else if(y>5 && ty>5)
+		{
+			if(tx>7 && x<8)
+			{
 				return true;
 			}
 		}
@@ -381,12 +388,23 @@ public class MiniMax {
 	}
 
 	public boolean lapping(int x, int y, int tx, int ty) {
-		if (y>7 && ty>7){
-			if (x>7 && tx<8){
+		
+		if (y>7 && ty<7 && tx>4){
+			if (tx<8 && x>7){
+				return true;
+			}
+		}
+		else if(y>5 && ty>5)
+		{
+			if(tx<8 && x>7)
+			{
 				return true;
 			}
 		}
 		return false;
+		
+		
+	
 	}
 
 	private boolean legalMove(GameBoard board, Kangaroo k, int x, int y) {

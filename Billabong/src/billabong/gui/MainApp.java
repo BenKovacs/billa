@@ -231,18 +231,18 @@ public class MainApp implements ActionListener {
 			doCalculateMoves();
 			break;
 		case "move":
-			if(algoPlayer0 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMoveG();
-			if(algoPlayer0 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMove();
-			if(algoPlayer0 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMov();
-			if(algoPlayer1 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMoveG();
-			if(algoPlayer1 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMove();
-			if(algoPlayer1 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMov();
-			if(algoPlayer2 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMoveG();
-			if(algoPlayer2 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMove();
-			if(algoPlayer2 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMov();
-			if(algoPlayer3 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMoveG();
-			if(algoPlayer3 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMove();
-			if(algoPlayer3 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMov();
+			if(algoPlayer0 == 0 && currentPlayer == 0) doMoveG();
+			if(algoPlayer0 == 1 && currentPlayer == 0) doMove();
+			if(algoPlayer0 == 2 && currentPlayer == 0) doMov();
+			if(algoPlayer1 == 0 && currentPlayer == 1) doMoveG();
+			if(algoPlayer1 == 1 && currentPlayer == 1) doMove();
+			if(algoPlayer1 == 2 && currentPlayer == 1) doMov();
+			if(algoPlayer2 == 0 && currentPlayer == 2) doMoveG();
+			if(algoPlayer2 == 1 && currentPlayer == 2) doMove();
+			if(algoPlayer2 == 2 && currentPlayer == 2) doMov();
+			if(algoPlayer3 == 0 && currentPlayer == 3) doMoveG();
+			if(algoPlayer3 == 1 && currentPlayer == 3) doMove();
+			if(algoPlayer3 == 2 && currentPlayer == 3) doMov();
 			
 			break;
 		}
@@ -281,18 +281,18 @@ public class MainApp implements ActionListener {
 				System.out.println("Finished calcing moves in "+(end-start)+" ms");
 				mp.setState(TurnState.DepthComplete, end-start);
 				
-				if(algoPlayer0 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMoveG();
-				if(algoPlayer0 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMove();
-				if(algoPlayer0 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMov();
-				if(algoPlayer1 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMoveG();
-				if(algoPlayer1 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMove();
-				if(algoPlayer1 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMov();
-				if(algoPlayer2 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMoveG();
-				if(algoPlayer2 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMove();
-				if(algoPlayer2 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMov();
-				if(algoPlayer3 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMoveG();
-				if(algoPlayer3 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMove();
-				if(algoPlayer3 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMov();
+				if(algoPlayer0 == 0 && currentPlayer == 0) doMove();
+				if(algoPlayer0 == 1 && currentPlayer == 0) doMove();
+				if(algoPlayer0 == 2 && currentPlayer == 0) doMov();
+				if(algoPlayer1 == 0 && currentPlayer == 1) doMove();
+				if(algoPlayer1 == 1 && currentPlayer == 1) doMove();
+				if(algoPlayer1 == 2 && currentPlayer == 1) doMov();
+				if(algoPlayer2 == 0 && currentPlayer == 2) doMove();
+				if(algoPlayer2 == 1 && currentPlayer == 2) doMove();
+				if(algoPlayer2 == 2 && currentPlayer == 2) doMov();
+				if(algoPlayer3 == 0 && currentPlayer == 3) doMove();
+				if(algoPlayer3 == 1 && currentPlayer == 3) doMove();
+				if(algoPlayer3 == 2 && currentPlayer == 3) doMov();
 			}
 		};
 		
@@ -319,25 +319,27 @@ public class MainApp implements ActionListener {
 						currentPlayer = 0;
 					}
 					lblStartPlayerCurrent.setText("Player Turn: "+(startPlayer+1)+" Current Player: "+(currentPlayer+1));
+					if (currentPlayer == 0 && algoPlayer0 == 0 && depth == 1)
+					{
+						mp.setState(TurnState.DepthComplete, end-start);
+					}
+					if (currentPlayer == 1 && algoPlayer1 == 0 && depth == 1)
+					{
+						mp.setState(TurnState.DepthComplete, end-start);
+					}
+					if (currentPlayer == 2 && algoPlayer2 == 0 && depth == 1)
+					{
+						mp.setState(TurnState.DepthComplete, end-start);
+					}
+					if (currentPlayer == 3 && algoPlayer3 == 0 && depth == 1)
+					{
+						mp.setState(TurnState.DepthComplete, end-start);
+					}
+					
 					if (depth == aiDepth){
 						mp.setState(TurnState.DepthComplete, end-start);
 					}
-					if (gb.getPlayers().get(currentPlayer).getTeamId() == 0 && algoPlayer0 == 0)
-					{
-						mp.setState(TurnState.DepthComplete, end-start);
-					}
-					if (gb.getPlayers().get(currentPlayer).getTeamId() == 1 && algoPlayer1 == 0)
-					{
-						mp.setState(TurnState.DepthComplete, end-start);
-					}
-					if (gb.getPlayers().get(currentPlayer).getTeamId() == 2 && algoPlayer2 == 0)
-					{
-						mp.setState(TurnState.DepthComplete, end-start);
-					}
-					if (gb.getPlayers().get(currentPlayer).getTeamId() == 3 && algoPlayer3 == 0)
-					{
-						mp.setState(TurnState.DepthComplete, end-start);
-					}
+					
 					else{
 						mp.setState(TurnState.MovesFound, end-start);
 					}
