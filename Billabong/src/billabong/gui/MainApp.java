@@ -49,6 +49,7 @@ public class MainApp implements ActionListener {
 	private JLabel lblStartPlayerCurrent;
 	private BoardPanel bp;
 	private LinkedList<Point> points  ;
+	
 
 	/**
 	 * Launch the application.
@@ -83,6 +84,7 @@ public class MainApp implements ActionListener {
 		numKangas = settings.getNumberOfKangaroos();
 		aiDepth = settings.getDepthLevel();
 		points = new LinkedList<>(); 
+		players = new ArrayList<Player>() ;
 		debugMode = settings.isDebugMode();
 		
 		// TODO Implement getting the board size and setting the board size. This will require some clever use of global variables as 16 and 14 are used everywhere
@@ -123,7 +125,7 @@ public class MainApp implements ActionListener {
 	
 		
 		
-		//team 1.
+		//placement
 		private Point randomPoint(LinkedList<Point> points)
 	    {
 	        int x = (int)(Math.random()*8 + 8);
@@ -147,9 +149,9 @@ public class MainApp implements ActionListener {
 	    }
 	   
 	    private void createPlayers() {
-	       ArrayList<Player> players = new ArrayList<Player>();
+	       players = new ArrayList<Player>();
 	       
-	        LinkedList<Point> points = new LinkedList<Point>();
+	        //LinkedList<Point> points = new LinkedList<Point>();
 	       
 	        for(int i = 0; i < 41; i++)
 	        {  
