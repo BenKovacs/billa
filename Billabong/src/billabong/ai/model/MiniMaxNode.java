@@ -16,6 +16,7 @@ public class MiniMaxNode{
 		public double score;
 		public double cumulativeScore;
 		public double utility = 0;
+		public boolean lap = false;
 //		int level;
 		
 		private GameBoard board;

@@ -10,6 +10,7 @@ public class LegalMove{
 		to = new Point(tx,ty);
 		kangaroo = kanga;
 	}
+	public Boolean lap = false;
 	public Kangaroo kangaroo;
 	public Point from;
 	public Point to;

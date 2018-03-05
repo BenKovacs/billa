@@ -30,9 +30,9 @@ public class MonteCarloTreeSearch {
 
     public GameBoard findNextMove(GameBoard board, int playerNo) {
         long start = System.currentTimeMillis();
-        long end = start + 60 * getMillisForCurrentLevel();
+        long end = start + 500 * getMillisForCurrentLevel();
 
-        oponent = getNextPlayer(playerNo+1);
+        oponent = playerNo+1;
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
         rootNode.getState().setBoard(board);
@@ -51,7 +51,7 @@ public class MonteCarloTreeSearch {
                 nodeToExplore = promisingNode.getRandomChildNode();
             }
             int playoutResult = simulateRandomPlayout(nodeToExplore);
-            // Phase 4 - Update
+            // Phase 4 - Update            
             backPropogation(nodeToExplore, playoutResult);
         }
 
@@ -92,21 +92,14 @@ public class MonteCarloTreeSearch {
 
     private void backPropogation(Node nodeToExplore, int playerNo) {
         Node tempNode = nodeToExplore;
-        String x = " " ;
         
         while (tempNode != null) {
-        	System.out.println("looping bitch");
+        	//System.out.println("looping bitch");
             tempNode.getState().incrementVisit();
             if (tempNode.getState().getPlayerNo() == playerNo)
                 tempNode.getState().addScore(WIN_SCORE);
-            /*for(int i = 0; i < tempNode.getState().getBoard().getKangaroos().size(); i++){
-    			x = x + " winnerNode check yoooooooooooooooooooooouuu  " + tempNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + tempNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
-    			System.lineSeparator();
-    		}
-            System.out.println(x);*/
-            tempNode = tempNode.getParent(); 
-        }
-        
+            tempNode = tempNode.getParent();    
+        }      
     }
 
     private int simulateRandomPlayout(Node node) {
@@ -124,18 +117,18 @@ public class MonteCarloTreeSearch {
             tempState.togglePlayer();
             tempState.randomPlay();
             boardStatus = tempState.getBoard().checkStatus();
-            String x = " " ;
+            /*String x = " " ;
             for(int i = 0; i < tempState.getBoard().getKangaroos().size(); i++){
     			x = x + " winnerNode check yooo  " + tempState.getBoard().getKangaroos().get(i).getX() + " x and y " + tempState.getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
     			System.lineSeparator();
     		}
             System.out.println(x);
-
+*/
             //cntr++;
             //System.out.println(cntr + "iterations");
 
         }
-        System.out.println("finished this shit");
+        System.out.println("finished 3rd phase");
         return boardStatus;
     }
     

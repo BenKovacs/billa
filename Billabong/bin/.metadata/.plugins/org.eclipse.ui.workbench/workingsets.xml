@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1518963547535_0" label="Window Working Set" name="Aggregate for window 1518963547535"/>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1518963547535_0" label="Window Working Set" name="Aggregate for window 1518963547535"/>
+>>>>>>> branch 'master' of https://github.com/BenKovacs/billa.git
 </workingSetManager>
