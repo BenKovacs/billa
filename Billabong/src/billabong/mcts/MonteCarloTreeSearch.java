@@ -2,6 +2,7 @@ package billabong.mcts;
 
 import java.util.List;
 
+import billabong.ai.model.LegalMove;
 import billabong.model.GameBoard;
 
 public class MonteCarloTreeSearch {
@@ -36,7 +37,7 @@ public class MonteCarloTreeSearch {
         return 2 * (this.level - 1) + 1;
     }
 
-    public GameBoard findNextMove(GameBoard board, int playerNo) {
+    public LegalMove findNextMove(GameBoard board, int playerNo) {
         long start = System.currentTimeMillis();
         long end = start + 60 * getMillisForCurrentLevel();
         playerNo++;
@@ -82,7 +83,7 @@ public class MonteCarloTreeSearch {
 			System.lineSeparator();
 		}
         System.out.println(x);*/
-        return winnerNode.getState().getBoard();
+        return winnerNode.getState().getLm();
     }
 
     private Node selectPromisingNode(Node rootNode) {
@@ -109,6 +110,7 @@ public class MonteCarloTreeSearch {
             }
             ////////////////////////////////////
             newNode.getState().setPlayerNo(node.getState().getOpponent());
+            newNode.setLm(newNode.getState().getLm());
             node.getChildArray().add(newNode);
             /*String x = " " ;
             for(int i = 0; i < newNode.getState().getBoard().getKangaroos().size(); i++){

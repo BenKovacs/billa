@@ -353,8 +353,9 @@ public class MainApp implements ActionListener {
 	 
 	private void doMov(){
 		
-
+		
 		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
+		
 		String x = " " ;
 		 for(int i = 0; i < gb.getKangaroos().size(); i++){
 				x = x + " pre MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
@@ -362,7 +363,11 @@ public class MainApp implements ActionListener {
 			}
 		
 		//this.gb = gb.clone(mcts.findNextMove(gb, currentPlayer));
-		this.gb = mcts.findNextMove(gb, currentPlayer);
+		//this.gb = this.gb.clone(mcts.findNextMove(gb, currentPlayer));
+		 LegalMove move = mcts.findNextMove(gb, currentPlayer);
+		 
+			
+			gb.doMove(move);
 		currentPlayer++;
 		if (currentPlayer == players.size()){
 			System.out.println("currentplayer = 0");
