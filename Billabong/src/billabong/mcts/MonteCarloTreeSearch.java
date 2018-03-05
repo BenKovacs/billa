@@ -14,6 +14,10 @@ public class MonteCarloTreeSearch {
     boolean DEBUG2 = true;
     boolean DEBUG3 = true;
     boolean DEBUG4 = true;
+    
+    public MonteCarloTreeSearch(){
+    	level = 3 ;
+    }
 
     public MonteCarloTreeSearch(int PlayerNumber) {
         this.level = 3;
@@ -129,9 +133,14 @@ public class MonteCarloTreeSearch {
             String x = "";
             for(int i = 0; i < tempNode.getState().getBoard().getKangaroos().size(); i++){
     			x = x + " Phase 4 Backpropagation  " + tempNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + tempNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+<<<<<<< HEAD
     			x = x + " current player is " + tempNode.getState().getPlayerNo();
     			x = x + " amount of kangaroos " + tempNode.getState().getBoard().getKangaroos().size();
     			System.lineSeparator();
+=======
+    			x = x + " current player is " + tempNode.getState().getPlayerNo() + System.lineSeparator(); 
+    			
+>>>>>>> origin/master
     		}
             System.out.println(x);
             }
