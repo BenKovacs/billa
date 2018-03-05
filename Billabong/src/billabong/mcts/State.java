@@ -98,12 +98,12 @@ public class State {
     	for(int i = 0 ; i < lmList.size() ; i++){
     		
     		State s = new State(board) ;
-    		s.setPlayerNo(3 - this.playerNo);
+    		s.setPlayerNo(this.playerNo = 3 - this.playerNo);
     		s.getBoard().move(lmList.get(i).kangaroo, lmList.get(i).to.x,  lmList.get(i).to.y) ;
     		possibleStates.add(s) ;
     		
     	}
-    	//System.out.println(possibleStates.size() + "  possible moves !!!!!");
+    	System.out.println(possibleStates.size() + "  possible moves !!!!!");
         return possibleStates;
     }
 

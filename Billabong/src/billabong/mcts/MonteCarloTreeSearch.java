@@ -103,8 +103,7 @@ public class MonteCarloTreeSearch {
             String x = "";
             for(int i = 0; i < newNode.getState().getBoard().getKangaroos().size(); i++){
     			x = x + " Phase 2 Expansion  " + newNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + newNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
-    			x = x + " current player is " + newNode.getState().getPlayerNo();
-    			System.lineSeparator();
+    			x = x + " current player is " + newNode.getState().getPlayerNo() +  System.lineSeparator() ;
     		}
             System.out.println(x);
             }
