@@ -97,9 +97,11 @@ public class State {
     	
     	for(int i = 0 ; i < lmList.size() ; i++){
     		
-    		board.move(lmList.get(i).kangaroo, lmList.get(i).to.x,  lmList.get(i).to.y) ;
     		State s = new State(board) ;
+    		s.setPlayerNo(this.playerNo = 3 - this.playerNo);
+    		s.getBoard().move(lmList.get(i).kangaroo, lmList.get(i).to.x,  lmList.get(i).to.y) ;
     		possibleStates.add(s) ;
+    		
     	}
     	System.out.println(possibleStates.size() + "  possible moves !!!!!");
         return possibleStates;
@@ -159,4 +161,6 @@ public class State {
         //this.board.setCurrentPlayer(this.playerNo);
         //System.out.println("toogled to player " + playerNo);
     }
+    
+
 }

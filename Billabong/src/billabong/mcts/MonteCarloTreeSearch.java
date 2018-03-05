@@ -30,9 +30,9 @@ public class MonteCarloTreeSearch {
 
     public GameBoard findNextMove(GameBoard board, int playerNo) {
         long start = System.currentTimeMillis();
-        long end = start + 500 * getMillisForCurrentLevel();
+        long end = start + 60 * getMillisForCurrentLevel();
 
-        oponent = playerNo+1;
+        oponent = getNextPlayer(playerNo+1);
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
         rootNode.getState().setBoard(board);
