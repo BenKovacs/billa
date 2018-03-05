@@ -133,8 +133,8 @@ public class MonteCarloTreeSearch {
             String x = "";
             for(int i = 0; i < tempNode.getState().getBoard().getKangaroos().size(); i++){
     			x = x + " Phase 4 Backpropagation  " + tempNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + tempNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
-    			x = x + " current player is " + tempNode.getState().getPlayerNo();
-    			System.lineSeparator();
+    			x = x + " current player is " + tempNode.getState().getPlayerNo() + System.lineSeparator(); 
+    			
     		}
             System.out.println(x);
             }
