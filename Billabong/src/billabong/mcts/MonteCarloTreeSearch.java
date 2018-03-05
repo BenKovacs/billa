@@ -11,7 +11,7 @@ public class MonteCarloTreeSearch {
     private int oponent;
     private int PN;
     boolean DEBUG1 = false;
-    boolean DEBUG2 = true;
+    boolean DEBUG2 = false;
     boolean DEBUG3 = false;
     boolean DEBUG4 = false;
     
@@ -124,7 +124,6 @@ public class MonteCarloTreeSearch {
         Node tempNode = nodeToExplore;
         
         while (tempNode != null) {
-        	//System.out.println("looping bitch");
             tempNode.getState().incrementVisit();
             if (tempNode.getState().getPlayerNo() == playerNo)
                 tempNode.getState().addScore(WIN_SCORE);
@@ -156,7 +155,6 @@ public class MonteCarloTreeSearch {
         }
         //int cntr = 0;
         while (tempState.getBoard().isOver() == false) {
-            //System.out.println("isover = false");
             tempState.togglePlayer();
             tempState.randomPlay();
             ///////////////////////////////////
@@ -171,13 +169,6 @@ public class MonteCarloTreeSearch {
             }
             ///////////////////////////////////
             boardStatus = tempState.getBoard().checkStatus();
-            /*String x = " " ;
-            for(int i = 0; i < tempState.getBoard().getKangaroos().size(); i++){
-    			x = x + " winnerNode check yooo  " + tempState.getBoard().getKangaroos().get(i).getX() + " x and y " + tempState.getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
-    			System.lineSeparator();
-    		}
-            System.out.println(x);
-*/
             //cntr++;
             //System.out.println(cntr + "iterations");
 
@@ -188,8 +179,10 @@ public class MonteCarloTreeSearch {
     
     public int getNextPlayer(int p) {
    		if (p+1 <= PN) {
+    		System.out.println("got the player number " + (p+1));
     		return p+1;
     	}
+    	System.out.println("got the player number " + 1);
     	return 1;
     }
 
