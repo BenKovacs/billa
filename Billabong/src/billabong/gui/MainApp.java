@@ -44,6 +44,14 @@ public class MainApp implements ActionListener {
 	private int startPlayer = 0;
 	private int aiDepth;
 	private int algorithm = 1;
+	private int algoPlayer0 = 0;
+	private int algoPlayer1 = 1;
+	private int algoPlayer2 = 2;
+	private int algoPlayer3 = 0;
+	//You can select an algorithm for each player here. 0 = Greedy
+	//													1 = MiniMax
+	//													2 = MCTS
+	
 	private boolean debugMode;
 	private JSplitPane splitPane;
 	private JPanel panel;
@@ -223,9 +231,19 @@ public class MainApp implements ActionListener {
 			doCalculateMoves();
 			break;
 		case "move":
-			if(algorithm == 0)doMoveG();
-			if(algorithm == 1)doMove();
-			if(algorithm == 2)doMov();
+			if(algoPlayer0 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMoveG();
+			if(algoPlayer0 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMove();
+			if(algoPlayer0 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMov();
+			if(algoPlayer1 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMoveG();
+			if(algoPlayer1 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMove();
+			if(algoPlayer1 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMov();
+			if(algoPlayer2 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMoveG();
+			if(algoPlayer2 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMove();
+			if(algoPlayer2 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMov();
+			if(algoPlayer3 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMoveG();
+			if(algoPlayer3 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMove();
+			if(algoPlayer3 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMov();
+			
 			break;
 		}
 	}
@@ -263,9 +281,18 @@ public class MainApp implements ActionListener {
 				System.out.println("Finished calcing moves in "+(end-start)+" ms");
 				mp.setState(TurnState.DepthComplete, end-start);
 				
-				if(algorithm == 0)doMoveG();
-				if(algorithm == 1)doMove();
-				if(algorithm == 2)doMov();
+				if(algoPlayer0 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMoveG();
+				if(algoPlayer0 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMove();
+				if(algoPlayer0 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 0) doMov();
+				if(algoPlayer1 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMoveG();
+				if(algoPlayer1 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMove();
+				if(algoPlayer1 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 1) doMov();
+				if(algoPlayer2 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMoveG();
+				if(algoPlayer2 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMove();
+				if(algoPlayer2 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 2) doMov();
+				if(algoPlayer3 == 0 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMoveG();
+				if(algoPlayer3 == 1 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMove();
+				if(algoPlayer3 == 2 && gb.getPlayers().get(currentPlayer).getTeamId() == 3) doMov();
 			}
 		};
 		
@@ -294,7 +321,24 @@ public class MainApp implements ActionListener {
 					lblStartPlayerCurrent.setText("Player Turn: "+(startPlayer+1)+" Current Player: "+(currentPlayer+1));
 					if (depth == aiDepth){
 						mp.setState(TurnState.DepthComplete, end-start);
-					}else{
+					}
+					if (gb.getPlayers().get(currentPlayer).getTeamId() == 0 && algoPlayer0 == 0)
+					{
+						mp.setState(TurnState.DepthComplete, end-start);
+					}
+					if (gb.getPlayers().get(currentPlayer).getTeamId() == 1 && algoPlayer1 == 0)
+					{
+						mp.setState(TurnState.DepthComplete, end-start);
+					}
+					if (gb.getPlayers().get(currentPlayer).getTeamId() == 2 && algoPlayer2 == 0)
+					{
+						mp.setState(TurnState.DepthComplete, end-start);
+					}
+					if (gb.getPlayers().get(currentPlayer).getTeamId() == 3 && algoPlayer3 == 0)
+					{
+						mp.setState(TurnState.DepthComplete, end-start);
+					}
+					else{
 						mp.setState(TurnState.MovesFound, end-start);
 					}
 				} catch (Exception e) {
