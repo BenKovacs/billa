@@ -128,6 +128,17 @@ public class MonteCarloTreeSearch {
             tempNode.getState().incrementVisit();
             if (tempNode.getState().getPlayerNo() == playerNo)
                 tempNode.getState().addScore(WIN_SCORE);
+            ////////////////////////////////////
+            if (DEBUG4) {
+            String x = "";
+            for(int i = 0; i < tempNode.getState().getBoard().getKangaroos().size(); i++){
+    			x = x + " Phase 4 Backpropagation  " + tempNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + tempNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+    			x = x + " current player is " + tempNode.getState().getPlayerNo();
+    			System.lineSeparator();
+    		}
+            System.out.println(x);
+            }
+            ////////////////////////////////////
             tempNode = tempNode.getParent();    
         }      
     }
@@ -151,7 +162,7 @@ public class MonteCarloTreeSearch {
             String x = " " ;
             for(int i = 0; i < tempState.getBoard().getKangaroos().size(); i++){
     			x = x + " Phase 3 Simulation  " + tempState.getBoard().getKangaroos().get(i).getX() + " x and y " + tempState.getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
-    			x = x + " current player is " + tempState.getPlayerNo();
+    			x = x + " move made by " + tempState.getPlayerNo();
     			System.lineSeparator();
     		}
             System.out.println(x);
