@@ -43,9 +43,8 @@ public class MainApp implements ActionListener {
 	private int depth = 0;
 	private int startPlayer = 0;
 	private int aiDepth;
-	private int algorithm = 1;
-	private int algoPlayer0 = 2;
-	private int algoPlayer1 = 2;
+	private int algoPlayer0 = 0;
+	private int algoPlayer1 = 1;
 	private int algoPlayer2 = 2;
 	private int algoPlayer3 = 2;
 	//You can select an algorithm for each player here. 0 = Greedy
