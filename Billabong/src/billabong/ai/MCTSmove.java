@@ -22,7 +22,7 @@ public class MCTSmove {
 
 				if(board[x][y].isOccupied() && board[x][y].getOccupant().getTeam().getTeamId() == team)
 				{	cnt++;
-					System.out.println(cnt +" kangaroos analysed");
+					//System.out.println(cnt +" kangaroos analysed");
 					finalLegalMoves(board[x][y].getOccupant(), x, y);
 				}
 				
@@ -38,14 +38,14 @@ public class MCTSmove {
 			for(int y = 0; y < 14; y++){
 				if(le.checkLegal(board,i,j,x,y)){
 					if(Math.abs(x-i)== 1 || Math.abs(y-j) == 1 )
-					{	System.out.println("move added");
+					{	//System.out.println("move added");
 						LegalMove t = new LegalMove(i,j,x,y,current);
 						finalMovesList.add(t);
 					}
 					
 					else 
 					{
-						System.out.println("move added");
+						//System.out.println("move added");
 						LegalMove t = new LegalMove(i,j,x,y,current);
 						finalMovesList.add(t);
 						checkJump(current,i, j, i, j, x, y);
@@ -61,7 +61,7 @@ public class MCTSmove {
 	
 	
 	public void checkJump(Kangaroo current,int a, int b, int i, int j, int k, int l)
-	{	System.out.println("Jump");
+	{	//System.out.println("Jump");
 		LegalChecker le = new LegalChecker();
 
 		
@@ -73,7 +73,7 @@ public class MCTSmove {
 					{	
 					
 						if(finalMovesList.size()<500)
-						{	System.out.println("move added");
+						{	//System.out.println("move added");
 							LegalMove t = new LegalMove(a,b,x,y,current);
 							finalMovesList.add(t);
 							checkJump(current,a,b, k, l, x, y);
