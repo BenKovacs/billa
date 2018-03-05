@@ -43,6 +43,7 @@ public class MainApp implements ActionListener {
 	private int depth = 0;
 	private int startPlayer = 0;
 	private int aiDepth;
+	private int algorithm = 1;
 	private boolean debugMode;
 	private JSplitPane splitPane;
 	private JPanel panel;
@@ -126,8 +127,10 @@ public class MainApp implements ActionListener {
 		
 		
 		//placement
-		private Point randomPoint(LinkedList<Point> points)
+		private Point randomPoint(List<Point> points)
 	    {
+			
+			
 	        int x = (int)(Math.random()*8 + 8);
 	        int y = (int)(Math.random()*6 + 8);
 	        Point temp = new Point(x, y);
@@ -141,7 +144,11 @@ public class MainApp implements ActionListener {
 	        {
 	            if(temp.x == points.get(j).x && temp.y == points.get(j).y)
 	                {
-	                    Point fail = randomPoint(points);
+	            		x = (int)(Math.random()*8 + 8);
+	            		y = (int)(Math.random()*6 + 8);
+	            		temp = new Point(x, y);
+	            		j = 0;
+	            		
 	                }
 	        }
 	        System.out.println(x + " " + y);
@@ -151,9 +158,9 @@ public class MainApp implements ActionListener {
 	    private void createPlayers() {
 	       players = new ArrayList<Player>();
 	       
-	        //LinkedList<Point> points = new LinkedList<Point>();
+	        List<Point> points = new ArrayList<Point>();
 	       
-	        for(int i = 0; i < 41; i++)
+	        for(int i = 0; i < 40; i++)
 	        {  
 	            Point temp = randomPoint(points);
 	            points.add(temp);  
@@ -164,7 +171,9 @@ public class MainApp implements ActionListener {
 			Player p = new HumanPlayer();
 			players.add(p);
 			for (int j=0; j<numKangas; j++){
-				Point pt = (Point) points.remove();
+				Point pt = (Point) points.get(points.size()-1);
+				points.remove(points.size()-1);
+				
 				new Kangaroo(p, pt.x, pt.y);
 			}
 			gb.addPlayer(p);
@@ -173,7 +182,10 @@ public class MainApp implements ActionListener {
 			Player p = new AIPlayer();
 			players.add(p);
 			for (int j=0; j<numKangas; j++){
-				Point pt = (Point) points.remove();
+				Point pt = (Point) points.get(points.size()-1);
+				points.remove(points.size()-1);
+				
+				System.out.println("New kanga made for player "+ i + " at coords " + pt.x + ", " + pt.y);
 				new Kangaroo(p, pt.x, pt.y);
 			}
 			gb.addPlayer(p);
@@ -211,7 +223,9 @@ public class MainApp implements ActionListener {
 			doCalculateMoves();
 			break;
 		case "move":
-			doMov();
+			if(algorithm == 0)doMoveG();
+			if(algorithm == 1)doMove();
+			if(algorithm == 2)doMov();
 			break;
 		}
 	}
@@ -249,7 +263,9 @@ public class MainApp implements ActionListener {
 				System.out.println("Finished calcing moves in "+(end-start)+" ms");
 				mp.setState(TurnState.DepthComplete, end-start);
 				
-				doMov();
+				if(algorithm == 0)doMoveG();
+				if(algorithm == 1)doMove();
+				if(algorithm == 2)doMov();
 			}
 		};
 		
@@ -289,7 +305,7 @@ public class MainApp implements ActionListener {
 		new Thread(r).start();
 	}
 	
-	
+	 
 	private void doMov(){
 		
 
@@ -367,6 +383,48 @@ public class MainApp implements ActionListener {
 			return false;
 		}
 	*/
+	private void doMoveG()
+	{
+		MiniMaxNode bestMove = MiniMax.getInstance().getBestMove();
+		//MCTS mcts = new MCTS(gb.getboard(), currentPlayer) ;
+		//MCTSmove bestMove = mcts.selectAction(); 
+		
+		Kangaroo k = bestMove.move.kangaroo;
+		int tx = bestMove.move.to.x;
+		int ty = bestMove.move.to.y;
+		
+		if(MiniMax.getInstance().lapping(k.getX(), k.getY(), tx, ty)== true){
+			k.incrementLapCounter();
+		}
+		if(MiniMax.getInstance().unLapping(k.getX(), k.getY(), tx, ty)== true){
+			k.decrementLapCounter();
+		}
+
+		if (k.getLapCounter() > 2) {
+			// Done the laps
+			// Remove the kanga from the game
+			gb.removeKangarooFromPlay(k);
+			bp.repaint();
+			return;
+		} 
+		
+		gb.move(k, tx, ty);
+		
+		// TODO if the bestMove is a jump move then place a referee in the originating square
+		bp.repaint();
+		
+		mp.setState(TurnState.Idle,0);
+		startPlayer ++;
+		depth = 0;
+		if (startPlayer == players.size()){
+			startPlayer = 0;
+		}
+		currentPlayer = startPlayer;
+		lblStartPlayerCurrent.setText("Player Turn: "+startPlayer+" Current Player: "+currentPlayer);
+		
+		MiniMax.getInstance().reset(this.gb);
+		MiniMax.getInstance().setCurrentPlayerTurn(this.gb.getPlayers().get(currentPlayer));
+	}
 	private void doMove() {
 		
 		MiniMaxNode bestMove = MiniMax.getInstance().getBestMove();
@@ -384,7 +442,7 @@ public class MainApp implements ActionListener {
 			k.decrementLapCounter();
 		}
 
-		if (k.getLapCounter() >= 2) {
+		if (k.getLapCounter() > 2) {
 			// Done the laps
 			// Remove the kanga from the game
 			gb.removeKangarooFromPlay(k);

@@ -99,7 +99,7 @@ public class Settings extends JDialog {
 		
 		tfKangaroos = new JTextField();
 		tfKangaroos.setHorizontalAlignment(SwingConstants.RIGHT);
-		tfKangaroos.setText("1");
+		tfKangaroos.setText("5");
 		sl_contentPanel.putConstraint(SpringLayout.NORTH, tfKangaroos, 6, SpringLayout.SOUTH, tfAiPlayers);
 		sl_contentPanel.putConstraint(SpringLayout.WEST, tfKangaroos, 0, SpringLayout.WEST, rdbtnSmall);
 		contentPanel.add(tfKangaroos);
