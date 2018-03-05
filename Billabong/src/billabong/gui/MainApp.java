@@ -356,9 +356,6 @@ public class MainApp implements ActionListener {
 		
 
 		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
-		System.out.println("finding move ");
-
-
 		String x = " " ;
 		 for(int i = 0; i < gb.getKangaroos().size(); i++){
 				x = x + " pre MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
@@ -367,14 +364,14 @@ public class MainApp implements ActionListener {
 		
 		//this.gb = gb.clone(mcts.findNextMove(gb, currentPlayer));
 		this.gb = mcts.findNextMove(gb, currentPlayer);
+		currentPlayer++;
 		if (currentPlayer == players.size()){
+			System.out.println("currentplayer = 0");
 			currentPlayer = 0;
 		}
 		bp.setGameBoard(gb);
 		bp.repaint();
 		System.out.println(x);
-		
-		
 		for(int i = 0; i < gb.getKangaroos().size(); i++){
 			System.out.println( "post MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga" );
 			System.lineSeparator();
