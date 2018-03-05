@@ -10,8 +10,8 @@ public class MonteCarloTreeSearch {
     private int level;
     private int oponent;
     private int PN;
-    boolean DEBUG1 = true;
-    boolean DEBUG2 = true;
+    boolean DEBUG1 = false;
+    boolean DEBUG2 = false;
     boolean DEBUG3 = false;
     boolean DEBUG4 = false;
     
