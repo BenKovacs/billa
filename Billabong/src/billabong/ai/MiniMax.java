@@ -172,6 +172,7 @@ public class MiniMax {
 			tempNode.originY = tempMove.from.y;
 			tempNode.move = tempMove;
 			tempNode.kangaMoving = tempMove.kangaroo;
+			if(tempMove.lap == true) tempNode.lap = true;
 			if(Math.abs(tempMove.from.x - tempMove.to.x) > 1 || Math.abs(tempMove.from.y - tempMove.to.y) > 1)
 			{
 				tempNode.move.jump = true;
@@ -180,8 +181,11 @@ public class MiniMax {
 			int dy = tempMove.to.y - tempMove.from.y;
 			//moves.add(tempNode);
 			try {
-				
-				tryMove(moves, node.getBoard(), tempMove.kangaroo, dx, dy, node.cumulativeScore);
+				if(tempMove.lap = true)
+				{
+					tryMove(moves, node.getBoard(), tempMove.kangaroo, dx, dy, node.cumulativeScore, true);
+				}
+				else tryMove(moves, node.getBoard(), tempMove.kangaroo, dx, dy, node.cumulativeScore, false);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -327,9 +331,11 @@ public class MiniMax {
 		}
 	}
 
-	private void tryMove(List<MiniMaxNode> moves, GameBoard board, Kangaroo k, int x, int y, double cumulativeScore) throws Exception {
+	private void tryMove(List<MiniMaxNode> moves, GameBoard board, Kangaroo k, int x, int y, double cumulativeScore, boolean lap) throws Exception {
 		if (true){
+			
 			MiniMaxNode move = getMove(board, k, k.getX()+x, k.getY()+y, cumulativeScore);
+			if(lap == true) move.lap = true;
 			moves.add(move);
 		}
 	}

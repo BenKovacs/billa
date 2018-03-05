@@ -47,6 +47,23 @@ public class MCTSmove {
 		return false;
 	}
 	
+	public boolean lap(int x, int y, int tx, int ty)
+	{
+		if (y>7 && ty<7 && tx>4){
+			if (tx<8 && x>7){
+				return true;
+			}
+		}
+		else if(y>5 && ty>5)
+		{
+			if(tx<8 && x>7)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void finalLegalMoves(Kangaroo current, int i, int j)
 	{
 		LegalChecker le = new LegalChecker();
@@ -65,7 +82,12 @@ public class MCTSmove {
 						System.out.println("move added");
 						if(!unlap(i,j,x,y))
 						{
+							
 							LegalMove t = new LegalMove(i,j,x,y,current);
+							if(lap(i,j,x,y))
+							{
+								t.lap=true;
+							}
 							finalMovesList.add(t);
 							checkJump(current,i, j, i, j, x, y);
 						}
@@ -92,11 +114,19 @@ public class MCTSmove {
 					if(!(Math.abs(x-k)== 1 || Math.abs(y-l) == 1) && !(x==i && y==j) && !(x==k && y==l) && !(x==a && y==b))
 					{	
 					
-						if(finalMovesList.size()<500)
-						{	System.out.println("move added");
-							LegalMove t = new LegalMove(a,b,x,y,current);
-							finalMovesList.add(t);
-							checkJump(current,a,b, k, l, x, y);
+						if(!unlap(k,l,x,y)){
+							
+						
+							if(finalMovesList.size()<500)
+							{	System.out.println("move added");
+								LegalMove t = new LegalMove(a,b,x,y,current);
+								if(lap(k,l,x,y))
+								{
+									t.lap = true;
+								}
+								finalMovesList.add(t);
+								checkJump(current,a,b, k, l, x, y);
+							}
 						}
 					}
 					
