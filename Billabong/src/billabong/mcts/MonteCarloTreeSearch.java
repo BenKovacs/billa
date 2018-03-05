@@ -10,8 +10,8 @@ public class MonteCarloTreeSearch {
     private int level;
     private int oponent;
     private int PN;
-    boolean DEBUG1 = false;
-    boolean DEBUG2 = false;
+    boolean DEBUG1 = true;
+    boolean DEBUG2 = true;
     boolean DEBUG3 = false;
     boolean DEBUG4 = false;
     
@@ -178,7 +178,7 @@ public class MonteCarloTreeSearch {
     }
     
     public int getNextPlayer(int p) {
-   		if (p+1 <= PN) {
+   		if (p < PN) {
     		System.out.println("got the player number " + (p+1));
     		return p+1;
     	}

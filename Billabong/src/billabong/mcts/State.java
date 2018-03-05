@@ -88,8 +88,8 @@ public class State {
             possibleStates.add(newState);
         });*/
     	List<State> possibleStates = new ArrayList<State>() ;
-    	System.out.println("board width + height " + board.getWidth() + " " + board.getHeight());
-    	MCTSmove mctsm = new MCTSmove(board.getBs(), playerNo) ;
+    	//System.out.println("board width + height " + board.getWidth() + " " + board.getHeight());
+    	MCTSmove mctsm = new MCTSmove(board.getBs(),3 - this.playerNo) ;
     	
     	ArrayList<LegalMove> lmList = new ArrayList<LegalMove>() ;
     	
@@ -130,7 +130,7 @@ public class State {
         if (availablePositions.get(selectRandom).kangaroo.getLapCounter() > 2) {
 			// Done the laps
 			// Remove the kanga from the game
-			board.removeKangarooFromPlay(availablePositions.get(selectRandom).kangaroo);
+			this.board.removeKangarooFromPlay(availablePositions.get(selectRandom).kangaroo);
 			//bp.repaint();
 			
 		} 
