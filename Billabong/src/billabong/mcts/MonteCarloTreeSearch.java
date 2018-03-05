@@ -11,7 +11,7 @@ public class MonteCarloTreeSearch {
     private int oponent;
     private int PN;
     boolean DEBUG1 = true;
-    boolean DEBUG2 = true;
+    boolean DEBUG2 = false;
     boolean DEBUG3 = false;
     boolean DEBUG4 = false;
     
@@ -41,12 +41,14 @@ public class MonteCarloTreeSearch {
         long end = start + 60 * getMillisForCurrentLevel();
         playerNo++;
         oponent = getNextPlayer(playerNo);
+        System.out.println("oponent is " + oponent + " " + "player is " + playerNo);
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
         rootNode.getState().setBoard(board);
         rootNode.getState().setPlayerNo(oponent);
 
         while (System.currentTimeMillis() < end) {
+        	//System.out.println("playerNo is " + playerNo);
             // Phase 1 - Selection
             Node promisingNode = selectPromisingNode(rootNode);
             ///////////////////////////////////
@@ -87,6 +89,7 @@ public class MonteCarloTreeSearch {
 
     private Node selectPromisingNode(Node rootNode) {
         Node node = rootNode;
+        System.out.println(" number of rootNode children " + node.getChildArray().size());
         while (node.getChildArray().size() != 0) {
             node = UCT.findBestNodeWithUCT(node);
         }
@@ -176,11 +179,11 @@ public class MonteCarloTreeSearch {
     }
     
     public int getNextPlayer(int p) {
-   		if (p < PN) {
-    		System.out.println("got the player number " + (p+1));
-    		return p+1;
+   		if (p == 1) {
+    		//System.out.println("got the player number " + (p+1));
+    		return 2;
     	}
-    	System.out.println("got the player number " + 1);
+    	//System.out.println("got the player number " + 1);
     	return 1;
     }
 

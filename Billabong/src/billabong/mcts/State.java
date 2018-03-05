@@ -56,7 +56,7 @@ public class State {
     }
 
     int getOpponent() {
-        return 3 - playerNo;
+        return 3 - this.playerNo;
     }
 
     public int getVisitCount() {
@@ -76,19 +76,7 @@ public class State {
     }
 
     public List<State> getAllPossibleStates() {
-    	/*//System.out.println("kkk " + board.getHeight());
-        List<State> possibleStates = new ArrayList<>();
-        List<LegalMove> availablePositions = board.getEmptyPositions(this.playerNo);
-        availablePositions.forEach(lm -> {
-        	//System.out.println("this.board " + this.board.getHeight());
-            State newState = new State(board);
-            //System.out.println("newState " + newState.getBoard().getHeight());
-            newState.setPlayerNo(3 - this.playerNo);
-            newState.getBoard().move(lm.kangaroo,lm.to.x,lm.to.y);
-            possibleStates.add(newState);
-        });*/
     	List<State> possibleStates = new ArrayList<State>() ;
-    	//System.out.println("board width + height " + board.getWidth() + " " + board.getHeight());
     	MCTSmove mctsm = new MCTSmove(board.getBs(),3 - this.playerNo) ;
     	
     	ArrayList<LegalMove> lmList = new ArrayList<LegalMove>() ;
@@ -97,13 +85,14 @@ public class State {
     	
     	for(int i = 0 ; i < lmList.size() ; i++){
     		
-    		State s = new State(board) ;
-    		s.setPlayerNo(this.playerNo = 3 - this.playerNo);
+    		State s = new State(this.board) ;
+    		//System.out.println("the player for expansion is " + (3-this.playerNo));
+    		s.setPlayerNo(3 - this.playerNo);
     		s.getBoard().move(lmList.get(i).kangaroo, lmList.get(i).to.x,  lmList.get(i).to.y) ;
     		possibleStates.add(s) ;
     		
     	}
-    	System.out.println(possibleStates.size() + "  possible moves !!!!!");
+    	//System.out.println(possibleStates.size() + "  possible moves !!!!!");
         return possibleStates;
     }
 
