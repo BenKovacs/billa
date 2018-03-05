@@ -230,21 +230,21 @@ public class MainApp implements ActionListener {
 		case "calculate":
 			doCalculateMoves();
 			break;
-		case "move":
+		/*case "move":
 			if(algoPlayer0 == 0 && currentPlayer == 0) doMoveG();
-			if(algoPlayer0 == 1 && currentPlayer == 0) doMove();
-			if(algoPlayer0 == 2 && currentPlayer == 0) doMov();
-			if(algoPlayer1 == 0 && currentPlayer == 1) doMoveG();
-			if(algoPlayer1 == 1 && currentPlayer == 1) doMove();
-			if(algoPlayer1 == 2 && currentPlayer == 1) doMov();
-			if(algoPlayer2 == 0 && currentPlayer == 2) doMoveG();
-			if(algoPlayer2 == 1 && currentPlayer == 2) doMove();
-			if(algoPlayer2 == 2 && currentPlayer == 2) doMov();
-			if(algoPlayer3 == 0 && currentPlayer == 3) doMoveG();
-			if(algoPlayer3 == 1 && currentPlayer == 3) doMove();
-			if(algoPlayer3 == 2 && currentPlayer == 3) doMov();
+			else if(algoPlayer0 == 1 && currentPlayer == 0) doMove();
+			else if(algoPlayer0 == 2 && currentPlayer == 0) doMov();
+			else if(algoPlayer1 == 0 && currentPlayer == 1) doMoveG();
+			else if(algoPlayer1 == 1 && currentPlayer == 1) doMove();
+			else if(algoPlayer1 == 2 && currentPlayer == 1) doMov();
+			else if(algoPlayer2 == 0 && currentPlayer == 2) doMoveG();
+			else if(algoPlayer2 == 1 && currentPlayer == 2) doMove();
+			else if(algoPlayer2 == 2 && currentPlayer == 2) doMov();
+			else if(algoPlayer3 == 0 && currentPlayer == 3) doMoveG();
+			else if(algoPlayer3 == 1 && currentPlayer == 3) doMove();
+			else if(algoPlayer3 == 2 && currentPlayer == 3) doMov();
 			
-			break;
+			break;*/
 		}
 	}
 
@@ -282,17 +282,17 @@ public class MainApp implements ActionListener {
 				mp.setState(TurnState.DepthComplete, end-start);
 				
 				if(algoPlayer0 == 0 && currentPlayer == 0) doMove();
-				if(algoPlayer0 == 1 && currentPlayer == 0) doMove();
-				if(algoPlayer0 == 2 && currentPlayer == 0) doMov();
-				if(algoPlayer1 == 0 && currentPlayer == 1) doMove();
-				if(algoPlayer1 == 1 && currentPlayer == 1) doMove();
-				if(algoPlayer1 == 2 && currentPlayer == 1) doMov();
-				if(algoPlayer2 == 0 && currentPlayer == 2) doMove();
-				if(algoPlayer2 == 1 && currentPlayer == 2) doMove();
-				if(algoPlayer2 == 2 && currentPlayer == 2) doMov();
-				if(algoPlayer3 == 0 && currentPlayer == 3) doMove();
-				if(algoPlayer3 == 1 && currentPlayer == 3) doMove();
-				if(algoPlayer3 == 2 && currentPlayer == 3) doMov();
+				else if(algoPlayer0 == 1 && currentPlayer == 0) doMove();
+				else if(algoPlayer0 == 2 && currentPlayer == 0) doMov();
+				else if(algoPlayer1 == 0 && currentPlayer == 1) doMove();
+				else if(algoPlayer1 == 1 && currentPlayer == 1) doMove();
+				else if(algoPlayer1 == 2 && currentPlayer == 1) doMov();
+				else if(algoPlayer2 == 0 && currentPlayer == 2) doMove();
+				else if(algoPlayer2 == 1 && currentPlayer == 2) doMove();
+				else if(algoPlayer2 == 2 && currentPlayer == 2) doMov();
+				else if(algoPlayer3 == 0 && currentPlayer == 3) doMove();
+				else if(algoPlayer3 == 1 && currentPlayer == 3) doMove();
+				else if(algoPlayer3 == 2 && currentPlayer == 3) doMov();
 			}
 		};
 		
