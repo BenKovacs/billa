@@ -5,14 +5,25 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import billabong.ai.model.LegalMove;
+
 
 
 public class Node {
     State state;
     Node parent;
     List<Node> childArray;
+    private LegalMove lm;
 
-    public Node() {
+    public LegalMove getLm() {
+		return lm;
+	}
+
+	public void setLm(LegalMove lm) {
+		this.lm = lm;
+	}
+
+	public Node() {
         this.state = new State();
         childArray = new ArrayList<>();
     }
@@ -74,5 +85,7 @@ public class Node {
             return c.getState().getVisitCount();
         }));
     }
+    
+    
 
 }

@@ -16,8 +16,17 @@ public class State {
     private int playerNo;
     private int visitCount;
     private double winScore;
+    private LegalMove lm;
 
-    public State() {
+    public LegalMove getLm() {
+		return lm;
+	}
+
+	public void setLm(LegalMove lm) {
+		this.lm = lm;
+	}
+
+	public State() {
         board = new GameBoard(16,14);
     }
 
@@ -100,6 +109,7 @@ public class State {
     		State s = new State(board) ;
     		s.setPlayerNo(3 - this.playerNo);
     		s.getBoard().move(lmList.get(i).kangaroo, lmList.get(i).to.x,  lmList.get(i).to.y) ;
+    		s.setLm(lmList.get(i));
     		possibleStates.add(s) ;
     		
     	}
@@ -121,6 +131,7 @@ public class State {
         int totalPossibilities = availablePositions.size();
         int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
         this.board.move(availablePositions.get(selectRandom).kangaroo,availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y);
+        
         if(lapping(availablePositions.get(selectRandom).from.x, availablePositions.get(selectRandom).from.y, availablePositions.get(selectRandom).to.x,availablePositions.get(selectRandom).to.y)== true){
         	availablePositions.get(selectRandom).kangaroo.incrementLapCounter();
 		}
