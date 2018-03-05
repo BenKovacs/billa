@@ -43,8 +43,8 @@ public class MainApp implements ActionListener {
 	private int depth = 0;
 	private int startPlayer = 0;
 	private int aiDepth;
-	private int algoPlayer0 = 2;
-	private int algoPlayer1 = 2;
+	private int algoPlayer0 = 0;
+	private int algoPlayer1 = 1;
 	private int algoPlayer2 = 2;
 	private int algoPlayer3 = 2;
 	//You can select an algorithm for each player here. 0 = Greedy
@@ -369,7 +369,7 @@ public class MainApp implements ActionListener {
 			currentPlayer = 0;
 		}
 		bp.setGameBoard(gb);
-		
+		bp.repaint();
 		System.out.println(x);
 		for(int i = 0; i < gb.getKangaroos().size(); i++){
 			System.out.println( "post MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga" );
@@ -381,7 +381,6 @@ public class MainApp implements ActionListener {
 				System.out.println("kannga " + j  + " from player " + i + " at position " + gb.getPlayers().get(i).getKangaroos().get(j).getX() + "   " + gb.getPlayers().get(i).getKangaroos().get(j).getY());
 			}
 		}
-		bp.repaint();
 		System.out.println("repainted loool");
 		
 	}

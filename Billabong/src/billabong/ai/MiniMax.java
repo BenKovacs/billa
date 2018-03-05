@@ -120,16 +120,16 @@ public class MiniMax {
 		List<MiniMaxNode> moves = new ArrayList<>();
 
 		// Basic walk moves
-		tryMove(moves, node.getBoard(), k, -1, -1, node.cumulativeScore);
-		tryMove(moves, node.getBoard(), k, 0, -1, node.cumulativeScore);
-		tryMove(moves, node.getBoard(), k, +1, -1, node.cumulativeScore);
+		tryMove(moves, node.getBoard(), k, -1, -1, node.cumulativeScore, false);
+		tryMove(moves, node.getBoard(), k, 0, -1, node.cumulativeScore, false);
+		tryMove(moves, node.getBoard(), k, +1, -1, node.cumulativeScore, false);
 
-		tryMove(moves, node.getBoard(), k, -1, 0, node.cumulativeScore);
-		tryMove(moves, node.getBoard(), k, +1, 0, node.cumulativeScore);
+		tryMove(moves, node.getBoard(), k, -1, 0, node.cumulativeScore, false);
+		tryMove(moves, node.getBoard(), k, +1, 0, node.cumulativeScore, false);
 
-		tryMove(moves, node.getBoard(), k, -1, +1, node.cumulativeScore);
-		tryMove(moves, node.getBoard(), k, 0, +1, node.cumulativeScore);
-		tryMove(moves, node.getBoard(), k, +1, +1, node.cumulativeScore);
+		tryMove(moves, node.getBoard(), k, -1, +1, node.cumulativeScore, false);
+		tryMove(moves, node.getBoard(), k, 0, +1, node.cumulativeScore, false);
+		tryMove(moves, node.getBoard(), k, +1, +1, node.cumulativeScore, false);
 		
 		// Jump moves
 		// TODO Implement > 1 jump moves at a time. Only 1 jump move is currently calculated and added to the list of Moves.
