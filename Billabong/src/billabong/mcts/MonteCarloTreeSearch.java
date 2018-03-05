@@ -45,6 +45,8 @@ public class MonteCarloTreeSearch {
         while (System.currentTimeMillis() < end) {
             // Phase 1 - Selection
             Node promisingNode = selectPromisingNode(rootNode);
+            ///////////////////////////////////
+            if (DEBUG1) {
             String x = " " ;
             for(int i = 0; i < promisingNode.getState().getBoard().getKangaroos().size(); i++){
     			x = x + " Phase 1 Selection  " + promisingNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + promisingNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
@@ -52,6 +54,8 @@ public class MonteCarloTreeSearch {
     			System.lineSeparator();
     		}
             System.out.println(x);
+            }
+            ///////////////////////////////////
             // Phase 2 - Expansion
             if (promisingNode.getState().getBoard().isOver() == false)
                 expandNode(promisingNode);
@@ -90,6 +94,8 @@ public class MonteCarloTreeSearch {
         possibleStates.forEach(state -> {
             Node newNode = new Node(state);
             newNode.setParent(node);
+            ////////////////////////////////////
+            if (DEBUG2) {
             String x = "";
             for(int i = 0; i < newNode.getState().getBoard().getKangaroos().size(); i++){
     			x = x + " Phase 2 Expansion  " + newNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + newNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
@@ -97,6 +103,8 @@ public class MonteCarloTreeSearch {
     			System.lineSeparator();
     		}
             System.out.println(x);
+            }
+            ////////////////////////////////////
             newNode.getState().setPlayerNo(node.getState().getOpponent());
             node.getChildArray().add(newNode);
             /*String x = " " ;
@@ -134,6 +142,17 @@ public class MonteCarloTreeSearch {
             //System.out.println("isover = false");
             tempState.togglePlayer();
             tempState.randomPlay();
+            ///////////////////////////////////
+            if (DEBUG3) {
+            String x = " " ;
+            for(int i = 0; i < tempState.getBoard().getKangaroos().size(); i++){
+    			x = x + " Phase 3 Simulation  " + tempState.getBoard().getKangaroos().get(i).getX() + " x and y " + tempState.getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+    			x = x + " current player is " + tempState.getPlayerNo();
+    			System.lineSeparator();
+    		}
+            System.out.println(x);
+            }
+            ///////////////////////////////////
             boardStatus = tempState.getBoard().checkStatus();
             /*String x = " " ;
             for(int i = 0; i < tempState.getBoard().getKangaroos().size(); i++){
