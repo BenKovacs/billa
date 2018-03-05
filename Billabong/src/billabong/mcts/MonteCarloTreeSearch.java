@@ -10,6 +10,10 @@ public class MonteCarloTreeSearch {
     private int level;
     private int oponent;
     private int PN;
+    boolean DEBUG1 = true;
+    boolean DEBUG2 = true;
+    boolean DEBUG3 = true;
+    boolean DEBUG4 = true;
 
     public MonteCarloTreeSearch(int PlayerNumber) {
         this.level = 3;
@@ -41,6 +45,13 @@ public class MonteCarloTreeSearch {
         while (System.currentTimeMillis() < end) {
             // Phase 1 - Selection
             Node promisingNode = selectPromisingNode(rootNode);
+            String x = " " ;
+            for(int i = 0; i < promisingNode.getState().getBoard().getKangaroos().size(); i++){
+    			x = x + " Phase 1 Selection  " + promisingNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + promisingNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+    			x = x + " current player is " + promisingNode.getState().getPlayerNo();
+    			System.lineSeparator();
+    		}
+            System.out.println(x);
             // Phase 2 - Expansion
             if (promisingNode.getState().getBoard().isOver() == false)
                 expandNode(promisingNode);
@@ -79,6 +90,13 @@ public class MonteCarloTreeSearch {
         possibleStates.forEach(state -> {
             Node newNode = new Node(state);
             newNode.setParent(node);
+            String x = "";
+            for(int i = 0; i < newNode.getState().getBoard().getKangaroos().size(); i++){
+    			x = x + " Phase 2 Expansion  " + newNode.getState().getBoard().getKangaroos().get(i).getX() + " x and y " + newNode.getState().getBoard().getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
+    			x = x + " current player is " + newNode.getState().getPlayerNo();
+    			System.lineSeparator();
+    		}
+            System.out.println(x);
             newNode.getState().setPlayerNo(node.getState().getOpponent());
             node.getChildArray().add(newNode);
             /*String x = " " ;
