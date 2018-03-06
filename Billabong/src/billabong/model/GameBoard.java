@@ -216,8 +216,8 @@ public class GameBoard {
 		Kangaroo k = move.kangaroo;
 		int tx = move.to.x;
 		int ty = move.to.y;
-		bs[k.getX()][k.getY()].setOccupant(null);
-		bs[k.getX()][k.getY()].setOccupied(false);
+		bs[move.from.x][move.from.y].setOccupant(null);
+		bs[move.from.x][move.from.y].setOccupied(false);
 		k.setX(tx);
 		k.setY(ty);
 		bs[tx][ty].setOccupant(k);

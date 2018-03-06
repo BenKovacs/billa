@@ -43,8 +43,8 @@ public class MainApp implements ActionListener {
 	private int depth = 0;
 	private int startPlayer = 0;
 	private int aiDepth;
-	private int algoPlayer0 = 0;
-	private int algoPlayer1 = 1;
+	private int algoPlayer0 = 2;
+	private int algoPlayer1 = 2;
 	private int algoPlayer2 = 2;
 	private int algoPlayer3 = 2;
 	//You can select an algorithm for each player here. 0 = Greedy
@@ -57,6 +57,7 @@ public class MainApp implements ActionListener {
 	private JLabel lblStartPlayerCurrent;
 	private BoardPanel bp;
 	private LinkedList<Point> points  ;
+	MonteCarloTreeSearch mcts ;
 	
 
 	/**
@@ -94,6 +95,7 @@ public class MainApp implements ActionListener {
 		points = new LinkedList<>(); 
 		players = new ArrayList<Player>() ;
 		debugMode = settings.isDebugMode();
+		mcts = new MonteCarloTreeSearch(2) ;
 		
 		// TODO Implement getting the board size and setting the board size. This will require some clever use of global variables as 16 and 14 are used everywhere
 		// TODO Perhaps initialise the grid to a size and then everywhere should be changed to loop based on the length of the array and not hardcoded size 
@@ -354,7 +356,7 @@ public class MainApp implements ActionListener {
 	private void doMov(){
 		
 		
-		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(2) ;
+		
 		
 		String x = " " ;
 		 for(int i = 0; i < gb.getKangaroos().size(); i++){
@@ -367,17 +369,41 @@ public class MainApp implements ActionListener {
 		 LegalMove move = mcts.findNextMove(gb, currentPlayer);
 		 
 			
-			gb.doMove(move);
+			
 		currentPlayer++;
 		if (currentPlayer == players.size()){
 			System.out.println("currentplayer = 0");
 			currentPlayer = 0;
 		}
-		bp.setGameBoard(gb);
+		
+		Kangaroo k = move.kangaroo ;
+		int tx =  move.to.x ;
+		int ty =  move.to.y ;
+		
+		if(MiniMax.getInstance().lapping(k.getX(), k.getY(), tx, ty)== true){
+			k.incrementLapCounter();
+		}
+		if(MiniMax.getInstance().unLapping(k.getX(), k.getY(), tx, ty)== true){
+			k.decrementLapCounter();
+		}
+
+		if (k.getLapCounter() > 2) {
+			// Done the laps
+			// Remove the kanga from the game
+			gb.removeKangarooFromPlay(k);
+			bp.repaint();
+			return;
+		} 
+		
+		gb.doMove(move);
+		
+		//bp.setGameBoard(gb);
 		bp.repaint();
-		System.out.println(x);
+		
+		
+		//System.out.println(x);
 		for(int i = 0; i < gb.getKangaroos().size(); i++){
-			System.out.println( "post MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga" );
+			//System.out.println( "post MCTS  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga" );
 			System.lineSeparator();
 		}
 		
@@ -386,7 +412,7 @@ public class MainApp implements ActionListener {
 				System.out.println("kannga " + j  + " from player " + i + " at position " + gb.getPlayers().get(i).getKangaroos().get(j).getX() + "   " + gb.getPlayers().get(i).getKangaroos().get(j).getY());
 			}
 		}
-		System.out.println("repainted loool");
+		//System.out.println("repainted loool");
 		
 	}
 	       /* List<LegalMove> availablePositions = this.gb.getEmptyPositions(1);

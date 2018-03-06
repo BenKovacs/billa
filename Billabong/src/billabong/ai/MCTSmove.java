@@ -120,7 +120,7 @@ public class MCTSmove {
 							
 						
 							if(finalMovesList.size()<500)
-							{	System.out.println("move added");
+							{	//System.out.println("move added");
 								LegalMove t = new LegalMove(a,b,x,y,current);
 								if(lap(k,l,x,y))
 								{

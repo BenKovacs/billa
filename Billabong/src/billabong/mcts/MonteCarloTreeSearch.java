@@ -137,7 +137,7 @@ public class MonteCarloTreeSearch {
     			
 
     		}
-            System.out.println(x);
+            //System.out.println(x);
             }
             ////////////////////////////////////
             tempNode = tempNode.getParent();    
@@ -165,7 +165,7 @@ public class MonteCarloTreeSearch {
     			x = x + " move made by " + tempState.getPlayerNo();
     			System.lineSeparator();
     		}
-            System.out.println(x);
+            //System.out.println(x);
             }
             ///////////////////////////////////
             boardStatus = tempState.getBoard().checkStatus();
@@ -179,10 +179,10 @@ public class MonteCarloTreeSearch {
     
     public int getNextPlayer(int p) {
    		if (p < PN) {
-    		System.out.println("got the player number " + (p+1));
+    		//System.out.println("got the player number " + (p+1));
     		return p+1;
     	}
-    	System.out.println("got the player number " + 1);
+    	//System.out.println("got the player number " + 1);
     	return 1;
     }
 

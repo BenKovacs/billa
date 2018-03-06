@@ -25,13 +25,13 @@ public class BoardPanel extends JPanel {
 	public void setGameBoard(GameBoard gb) {
 		gameBoard = new GameBoard(16,14);
 		this.gameBoard = gameBoard.clone(gb);
-		System.out.println("panel adjusted to new gb");
+		//System.out.println("panel adjusted to new gb");
 		String x = " " ;
 		 for(int i = 0; i < gb.getKangaroos().size(); i++){
 				x = x + " BoardPanel gameboard  " + gb.getKangaroos().get(i).getX() + " x and y " + gb.getKangaroos().get(i).getY()  + "of the " + i + "th kanga";
 				System.lineSeparator();
 			}
-		System.out.println(x);
+		//System.out.println(x);
 		
 	}
 
@@ -98,7 +98,7 @@ public class BoardPanel extends JPanel {
 				setBackground(c);
 			}
 			if (gameBoard.getBoardSquare(x, y).isOccupied()){
-				System.out.println("panel coords occupied are x " + x + " and y " + y);
+				//System.out.println("panel coords occupied are x " + x + " and y " + y);
 				Color col = gameBoard.getBoardSquare(x, y).getOccupant().getTeam().getColor();
 				g.setColor(col);
 				int width = this.getWidth()*3/4;
